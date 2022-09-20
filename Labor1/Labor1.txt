@@ -1,0 +1,243 @@
+//2022.09.19
+
+
+////1. Write a main function that adds two values (immutable variables) and prints the result using a
+////String template in the following format: 2 + 3 = 5.
+//fun sum(a:Int, b:Int):Int{
+//    return a+b
+//}
+//
+//fun main() {
+//    val a=2
+//    val b=3
+//    val sum = sum(a,b)
+//    println("Sum: $sum")
+//}
+
+////2. Write a main function that declares an immutable list (listOf) daysOfWeek containing the
+//// days of the week.
+////     ● Use a for loop that iterates over the list and prints the list to the standard output.
+////     ● Use a list filter to print the days starting with letter ‘T’
+////     ● Use a list filter to print the days containing the letter ‘e’
+////     ● Use a list filter to print all the days of length 6 (e.g. Friday)
+//
+//fun main() {
+//    val daysOfWeek = listOf("Monday", "Tuesday","Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
+//    for( day in daysOfWeek){
+//        println(day)
+//    }
+//    println("\n")
+//    daysOfWeek.filter{
+//        it.startsWith("T")
+//    }.forEach{
+//        println(it)
+//    }
+//    println("\n")
+//    daysOfWeek.filter{
+//        it.length==6
+//    }.forEach{
+//        println(it)
+//    }
+//
+//}
+
+//// 3. Write a function that checks whether a number is prime or not. Write a main function that
+//// prints prime numbers within a range.
+//fun isPrime(num:Int){
+//    var flag = false
+//    for (i in 2..num / 2) {
+//        // condition for nonprime number
+//        if (num % i == 0) {
+//            flag = true
+//            break
+//        }
+//    }
+//
+//    if (!flag)
+//        println("$num \n")
+//}
+//
+//fun main() {
+//    val numb_1 = 1
+//    val numb_2 = 10
+//    for( number in numb_1..numb_2){
+//        isPrime(number)
+//    }
+//
+//}
+
+//// 4. Write an encode and a corresponding decode function that encodes and respectively
+//// decodes the characters of a string. You may use any encoding strategy.
+////     ● Test your functions!
+////     ● Write a higher-order function (take a function as parameter) that encodes or decodes a
+////     message. Call this function twice. Once for encoding and once for decoding a message.
+//import java.util.*
+//
+//fun encode(text:String):String{
+//
+//    return Base64.getEncoder().encodeToString(text.toByteArray())
+//}
+//fun decode(text:String):String{
+//
+//    return String(Base64.getDecoder().decode(text))
+//}
+//
+//fun main() {
+//    val str = "Kotlin!"
+//    val encodedStr = encode(str)
+//    println(encodedStr)
+//    println("\n")
+//    val decodedStr = decode(encodedStr)
+//    println(decodedStr)
+//
+//}
+
+//import java.util.*
+
+// fun encode(text:String):String{
+    
+//     return Base64.getEncoder().encodeToString(text.toByteArray())
+// }
+// fun decode(text:String):String{
+    
+//     return String(Base64.getDecoder().decode(text))
+// }
+
+// fun messageCoding(msg: String, func: (String) -> String): String{
+// 	return func(msg)
+// }
+
+// fun main() {
+//     val str = "Kotlin!"
+//  	val encodedStr = messageCoding(str, ::encode)
+//     println(encodedStr)
+//     println("\n")
+//     val decodedStr = messageCoding(encodedStr, ::decode)
+//     println(decodedStr)
+//     println("\n")
+// }
+
+// 5. Write a compact function that prints the even numbers from a list. Use a list filter!
+// // Compact function = single-expression function
+// // Ex. fun double(x: Int):Int = x * 2
+
+// fun double(x: Int):Int = x * 2
+
+// fun even_numbers(x: List<Int>) = println( x.filter{it % 2 == 0 })
+
+
+// fun main(args: Array<String>) {
+//     val numbers = listOf(1, 3, 9, 16, 25, 36)
+//     even_numbers(numbers)
+// }
+
+// // 6. The map() performs the same transformation on every list item and returns the result list.
+// // Using map, perform the following operations:
+// //     ● Double the elements of a list of integers and print it.
+// //     ● Print the days of week capitalized (e.g. MONDAY for Monday)
+// //     ● Print the first character of each day capitalized (e.g. m for Monday)
+// //     ● Print the length of days (number of characters, e.g. Monday → 6)
+// //     ● Compute the average length of days (in number of characters)
+
+
+
+
+// fun main() {
+//     val numbers = listOf(1, 3, 9, 16, 25, 36)
+//     val numberDouble = numbers.map{it*2}
+//     println(numberDouble)
+//     println("\n")
+    
+//     val daysOfWeek = listOf("monday", "tuesday","wednesday", "thursday", "friday", "saturday", "sunday")
+    
+//     val daysOfWeekCap = daysOfWeek.map{it.uppercase()}
+//     println(daysOfWeekCap)
+//     println("\n")
+    
+//     val daysOfWeekIni = daysOfWeek.map{it.capitalize()}
+//     println(daysOfWeekIni)
+//     println("\n")
+    
+//     val daysOfWeekLen = daysOfWeek.map{it.length}
+//     println(daysOfWeekLen)
+//     println("\n")
+    
+//     println(daysOfWeekLen.average())
+//     println("\n")
+// }
+
+// // 7. Mutable lists.
+// //     ● Convert the daysOfWeek immutable list into a mutable one. Remove all days containing
+// //     the letter ‘n’, then print the mutable list. You should get this result:
+// //     	[Tuesday, Thursday, Friday, Saturday]
+// //     ● Print each element of the list in a new line together with the index of the element (convert
+// //     the list to list with index using the withIndex() function!). You should get the following
+// //     result:
+// //         Item at 0 is Tuesday
+// //         Item at 1 is Thursday
+// //         Item at 2 is Friday
+// //         Item at 3 is Saturday
+// //     ● Sort the result list alphabetically! You should get the following result:
+// //     	[Friday, Saturday, Thursday, Tuesday]
+
+// import java.util.function.Predicate
+
+// fun <T> remove(list: MutableList<T>, predicate: Predicate<T>) {
+//     list.removeIf { x: T -> predicate.test(x) }
+// }
+
+// fun main() {
+//     val daysOfWeek = listOf("monday", "tuesday","wednesday", "thursday", "friday", "saturday", "sunday")
+// 	val mutableDaysOfWeek = daysOfWeek.toMutableList()
+    
+//     var dayWithN = Predicate{ day: String -> day.contains("n") }
+// 	remove(mutableDaysOfWeek, dayWithN)
+//     println(mutableDaysOfWeek)
+//     println("\n")
+ 	
+//     for ((index, value) in mutableDaysOfWeek.withIndex()) {
+//     	println("Item at $index is $value")
+// 	}
+//     println("\n")
+    
+//     mutableDaysOfWeek.sort()
+//     println(mutableDaysOfWeek)
+//     println("\n")
+    
+// }
+
+// 8. Arrays.
+//     ● Generate an array of 10 random integers between 0 and 100, and use forEach to print
+//     each element of the array in a new line.
+//     ● Print the array sorted in ascending order!
+//     ● Check whether the array contains any even number!
+//     ● Check whether all the numbers are even!
+//     ● Calculate the average of generated numbers and print it using forEach!
+
+import java.util.function.Predicate
+
+fun <T> remove(list: MutableList<T>, predicate: Predicate<T>) {
+    list.removeIf { x: T -> predicate.test(x) }
+}
+
+fun main() {
+    var rand = (1..10).map{ (0..100).random()}.toMutableList()
+    val randIt = rand.iterator();
+    randIt.forEach{
+        println(it)
+    }
+    
+    println("\n")
+    rand.sort()
+    println(rand)
+    
+    println("\n")
+    println(rand.any{it%2==0})
+    
+    println("\n")
+    println(rand.all{it%2==0})
+    
+    println("\n")
+    println(rand.average())
+    
+}
