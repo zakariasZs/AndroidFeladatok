@@ -1,0 +1,18 @@
+1. Kotlin is developed by?
+Google
+JetBrains
+Microsoft
+Adobe
+2
+2. Which of following is used to handle null exceptions in Kotlin?
+Range
+Sealed Class
+Elvis Operator
+Lambda function
+3
+3. Which file extension is used to save Kotlin files.
+.java
+.kot
+.kt or .kts
+.andriod
+3
