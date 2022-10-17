@@ -3,4 +3,6 @@
     <string name="quiz_title">Quiz</string>
     <string name="get_started_title">Get Started</string>
     <string name="name_field">Your Name</string>
+    <string name="player_name_label_text">The name of the player is:</string>
+    <string name="choose_contact_button_text">Choose contact</string>
 </resources>
