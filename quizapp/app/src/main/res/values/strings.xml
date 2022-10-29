@@ -5,4 +5,6 @@
     <string name="name_field">Your Name</string>
     <string name="player_name_label_text">The name of the player is:</string>
     <string name="choose_contact_button_text">Choose contact</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
