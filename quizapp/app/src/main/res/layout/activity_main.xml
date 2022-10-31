@@ -8,10 +8,21 @@
     tools:context=".MainActivity">
 
 <!--fragmentContainerView-->
-    <androidx.fragment.app.FragmentContainerView
+<!--    <androidx.fragment.app.FragmentContainerView-->
+<!--        android:id="@+id/fragment_container_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:name="com.example.quizapp.fragment.QuizStartFragment"-->
+<!--        app:defaultNavHost="true"-->
+<!--        app:navGraph="@navigation/navigation"-->
+<!--        />-->
+
+    <fragment
         android:id="@+id/fragment_container_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.example.quizapp.fragment.QuizStartFragment" />
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:navGraph="@navigation/navigation"
+        app:defaultNavHost="true"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

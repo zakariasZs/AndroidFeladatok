@@ -7,5 +7,25 @@
     <fragment
         android:id="@+id/quizStartFragment"
         android:name="com.example.quizapp.fragment.QuizStartFragment"
-        android:label="QuizStartFragment" />
+        android:label="QuizStartFragment" >
+        <action
+            android:id="@+id/action_quizStartFragment_to_quizFragment2"
+            app:destination="@id/quizFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizFragment"
+        android:name="com.example.quizapp.fragment.QuizFragment"
+        android:label="QuizFragment" >
+        <action
+            android:id="@+id/action_quizFragment_to_quizEndFragment"
+            app:destination="@id/quizEndFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizEndFragment"
+        android:name="com.example.quizapp.fragment.QuizEndFragment"
+        android:label="QuizEndFragment" >
+        <action
+            android:id="@+id/action_quizEndFragment_to_quizStartFragment"
+            app:destination="@id/quizStartFragment" />
+    </fragment>
 </navigation>
