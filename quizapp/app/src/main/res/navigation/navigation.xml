@@ -28,4 +28,8 @@
             android:id="@+id/action_quizEndFragment_to_quizStartFragment"
             app:destination="@id/quizStartFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/userSetting"
+        android:name="com.example.quizapp.fragment.UserSettingFragment"
+        android:label="UserSetting" />
 </navigation>

@@ -23,7 +23,7 @@ import com.example.quizapp.viewModel.UserViewModel as UserViewModel
 
 class QuizStartFragment : Fragment(R.layout.quiz_start) {
 
-    private lateinit var binding: QuizStartBinding
+private lateinit var binding: QuizStartBinding
     private val PICK_CONTACT_REQUEST_CODE = 101
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,9 +50,14 @@ class QuizStartFragment : Fragment(R.layout.quiz_start) {
         binding.button.setOnClickListener{
             val textField: EditText = binding.editTextTextPersonName
             val textFieldText = textField.text
-            model.userName = textFieldText.toString()
-            this.findNavController().navigate(R.id.quizFragment)
-
+            if(textFieldText.toString().length == 0) {
+                val toast = Toast.makeText(getActivity(), "No Username set", Toast.LENGTH_SHORT)
+                toast.show();
+            }
+            else {
+                model.userName = textFieldText.toString()
+                this.findNavController().navigate(R.id.quizFragment)
+            }
 
         }
 

@@ -1,26 +1,44 @@
 package com.example.quizapp
 
-import android.content.Intent
-import android.database.Cursor
-import android.net.Uri
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.util.Log
-import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.snackbar.Snackbar
+import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI.setupWithNavController
+import com.example.quizapp.databinding.ActivityMainBinding
+import com.example.quizapp.fragment.QuizStartFragment
+import com.example.quizapp.fragment.UserSettingFragment
 
 
 class MainActivity : AppCompatActivity() {
 
     private val TAG: String = javaClass.simpleName
 
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var navController: NavController
+
+    private val usersettingFragment = UserSettingFragment()
+    private val quizStartFragment = QuizStartFragment()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        replaceFragment(quizStartFragment)
+
+        binding.bottomNavigationView.setOnItemSelectedListener {
+            when(it.itemId){
+                R.id.home -> replaceFragment(quizStartFragment)
+                R.id.question -> {}
+                R.id.settings -> replaceFragment(usersettingFragment)
+            else ->{}
+            }
+            true
+        }
+
+
 
 //        startButton.setOnClickListener{
 //            Log.d(TAG, "Button clicked")
@@ -31,8 +49,6 @@ class MainActivity : AppCompatActivity() {
 //            val toast = Toast.makeText(applicationContext, textFieldText.toString(), Toast.LENGTH_SHORT)
 //            toast.show()
 //        }
-
-
 
 //        val chooseButton : Button = findViewById(R.id.button2)
 //        chooseButton.setOnClickListener{
@@ -47,6 +63,11 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun replaceFragment(fragment: Fragment){
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.fragment_container_view, fragment)
+        transaction.commit()
+    }
 
 
     override fun onStart() {

@@ -36,7 +36,7 @@ class QuizEndFragment : Fragment(R.layout.quiz_end) {
 
         val model : UserViewModel by requireActivity().viewModels()
         val resultNrText: TextView = binding.questionResult
-        resultNrText.text = model.nrOfCorrectAnsers.toString().plus( "/").plus(model.nrOfQuestions.toString())
+        resultNrText.text = model.nrOfCorrectAnswers.toString().plus( "/").plus(model.nrOfQuestions.toString())
 
         binding.restartQuiz.setOnClickListener{
             this.findNavController().navigate(R.id.quizStartFragment)
