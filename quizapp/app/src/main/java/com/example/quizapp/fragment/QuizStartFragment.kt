@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
@@ -46,6 +47,11 @@ private lateinit var binding: QuizStartBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val model : UserViewModel by requireActivity().viewModels()
+
+        if(model.userName.length>0) {
+            val userNameText: TextView = binding.editTextTextPersonName
+            userNameText.text = model.userName
+        }
 
         binding.button.setOnClickListener{
             val textField: EditText = binding.editTextTextPersonName

@@ -15,4 +15,9 @@
     <string name="question_result_text">Quiz Result</string>
     <string name="restart_quiz">Restart Quiz</string>
 
+<!--  quiz_end  -->
+    <string name="settings_name">User Name:</string>
+    <string name="settings_name_placeholder">Type your name</string>
+    <string name="settings_button_save">Save</string>
+
 </resources>
