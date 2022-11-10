@@ -20,4 +20,10 @@
     <string name="settings_name_placeholder">Type your name</string>
     <string name="settings_button_save">Save</string>
 
+<!--  recycle_view list_item  -->
+    <string name="li_question">Question placeholder</string>
+    <string name="li_answer">Answer placeholder</string>
+    <string name="li_details">Details</string>
+    <string name="li_delete">Delete</string>
+
 </resources>

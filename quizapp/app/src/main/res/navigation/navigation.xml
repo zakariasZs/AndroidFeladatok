@@ -32,4 +32,8 @@
         android:id="@+id/userSetting"
         android:name="com.example.quizapp.fragment.UserSettingFragment"
         android:label="UserSetting" />
+    <fragment
+        android:id="@+id/questionListFragment"
+        android:name="com.example.quizapp.fragment.QuestionListFragment"
+        android:label="QuestionListFragment" />
 </navigation>

@@ -8,6 +8,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.example.quizapp.databinding.ActivityMainBinding
+import com.example.quizapp.fragment.QuestionListFragment
 import com.example.quizapp.fragment.QuizStartFragment
 import com.example.quizapp.fragment.UserSettingFragment
 
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
 
     private val usersettingFragment = UserSettingFragment()
     private val quizStartFragment = QuizStartFragment()
+    private val questionListFragment = QuestionListFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.home -> replaceFragment(quizStartFragment)
-                R.id.question -> {}
+                R.id.question -> replaceFragment(questionListFragment)
                 R.id.settings -> replaceFragment(usersettingFragment)
             else ->{}
             }
