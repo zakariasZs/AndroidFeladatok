@@ -16,6 +16,7 @@ import com.example.quizapp.R
 import com.example.quizapp.adapter.QuestionItemAdapter
 import com.example.quizapp.databinding.QuestionListBinding
 import com.example.quizapp.databinding.QuizStartBinding
+import com.example.quizapp.viewModel.QuestionAddModel
 import com.example.quizapp.viewModel.UserViewModel
 import com.google.android.material.snackbar.Snackbar
 
@@ -41,6 +42,7 @@ class QuestionListFragment : Fragment(R.layout.question_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val model : UserViewModel by requireActivity().viewModels()
+        val modelQuestionAdd : QuestionAddModel by requireActivity().viewModels()
 
         val dummyData = generateDummyList(100)
 
@@ -48,6 +50,17 @@ class QuestionListFragment : Fragment(R.layout.question_list) {
         recyclerViewQuestion.adapter = QuestionItemAdapter(dummyData)
         recyclerViewQuestion.layoutManager = LinearLayoutManager(getActivity())
         recyclerViewQuestion.setHasFixedSize(true)
+
+
+        binding.addQuestion.setOnClickListener { view ->
+            this.findNavController().navigate(R.id.questionAddFragment)
+        }
+
+        if(modelQuestionAdd.questionAddFlag == 1){
+            val toast = Toast.makeText(getActivity(), "New question added", Toast.LENGTH_SHORT)
+            toast.show();
+            modelQuestionAdd.questionAddFlag = 0;
+        }
 
 
     }

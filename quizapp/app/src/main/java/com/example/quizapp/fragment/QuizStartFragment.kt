@@ -24,7 +24,7 @@ import com.example.quizapp.viewModel.UserViewModel as UserViewModel
 
 class QuizStartFragment : Fragment(R.layout.quiz_start) {
 
-private lateinit var binding: QuizStartBinding
+    private lateinit var binding: QuizStartBinding
     private val PICK_CONTACT_REQUEST_CODE = 101
 
     override fun onCreate(savedInstanceState: Bundle?) {

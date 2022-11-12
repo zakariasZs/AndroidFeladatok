@@ -26,4 +26,11 @@
     <string name="li_details">Details</string>
     <string name="li_delete">Delete</string>
 
+<!--  question_add  -->
+    <string name="qa_question">Question placeholder</string>
+    <string name="qa_answer_title">Answers</string>
+    <string name="qa_correct_answer">Correct Answer</string>
+    <string name="qa_answer">Answer</string>
+    <string name="qa_add_answer">Add Question</string>
+
 </resources>
