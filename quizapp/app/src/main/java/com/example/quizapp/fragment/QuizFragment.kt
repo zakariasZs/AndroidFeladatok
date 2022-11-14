@@ -1,17 +1,25 @@
 package com.example.quizapp.fragment
 
+import Item
+import ItemController
+import ItemRepository
+import ItemService
 import android.app.AlertDialog
+import android.content.ContentValues.TAG
 import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.quizapp.R
 import com.example.quizapp.databinding.QuizBodyBinding
+import com.example.quizapp.viewModel.UserViewModel
 
 
 class QuizFragment :Fragment(R.layout.quiz_body) {
@@ -47,27 +55,29 @@ class QuizFragment :Fragment(R.layout.quiz_body) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        val model : UserViewModel by requireActivity().viewModels()
-//
-//        val questionText:TextView =binding.questionText
-//        val radioGroup: RadioGroup =binding.radioGroup
-//        val answer1Rb:RadioButton=binding.radioButton
-//        val answer2Rb:RadioButton=binding.radioButton2
-//        val answer3Rb:RadioButton=binding.radioButton3
-//        val answer4Rb:RadioButton=binding.radioButton4
-//        val nextBtn:Button=binding.nextQuestion
-//
-//        val nrOfQuestions=3
-//
-//        val itemServiceTemp = ItemService(ItemRepository)
-//        val items : List<Item> = itemServiceTemp.selectRandomItems(nrOfQuestions)
-//
-//        val itemController= ItemController(itemServiceTemp,requireActivity(),questionText,arrayListOf(answer1Rb,answer2Rb,answer3Rb,answer4Rb),nextBtn,radioGroup)
-//        itemController.quiz(items)
-//
-//        model.nrOfQuestions=nrOfQuestions
 
-        binding.nextQuestion.setOnClickListener{
+        val model : UserViewModel by requireActivity().viewModels()
+
+        val questionText:TextView =binding.questionText
+        val radioGroup: RadioGroup =binding.radioGroup
+        val answer1Rb:RadioButton=binding.radioButton
+        val answer2Rb:RadioButton=binding.radioButton2
+        val answer3Rb:RadioButton=binding.radioButton3
+        val answer4Rb:RadioButton=binding.radioButton4
+        val nextBtn:Button=binding.nextQuestion
+        val finishBtn:Button=binding.finishQuiz
+
+        val nrOfQuestions=8
+        model.nrOfQuestions=nrOfQuestions
+
+        val itemServiceTemp = ItemService(ItemRepository)
+        val items : List<Item> = itemServiceTemp.selectRandomItems(nrOfQuestions)
+
+        val itemController= ItemController(itemServiceTemp,requireActivity(),questionText,arrayListOf(answer1Rb,answer2Rb,answer3Rb,answer4Rb),nextBtn,finishBtn,radioGroup)
+        itemController.quiz(items)
+
+
+        binding.finishQuiz.setOnClickListener{
             this.findNavController().navigate(R.id.quizEndFragment)
 
         }

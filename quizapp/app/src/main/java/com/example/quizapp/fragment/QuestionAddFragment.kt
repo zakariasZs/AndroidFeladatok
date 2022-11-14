@@ -58,7 +58,8 @@ class QuestionAddFragment : Fragment(R.layout.question_add_fragment) {
                 val toast = Toast.makeText(getActivity(), "Fill every text fields", Toast.LENGTH_SHORT)
                 toast.show();
             }else {
-                model.questionAddFlag = 1
+                val toast = Toast.makeText(getActivity(), "New question was added", Toast.LENGTH_SHORT)
+                toast.show();
                 this.findNavController().navigate(R.id.questionListFragment)
             }
         }

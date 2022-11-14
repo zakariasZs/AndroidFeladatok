@@ -56,13 +56,6 @@ class QuestionListFragment : Fragment(R.layout.question_list) {
             this.findNavController().navigate(R.id.questionAddFragment)
         }
 
-        if(modelQuestionAdd.questionAddFlag == 1){
-            val toast = Toast.makeText(getActivity(), "New question added", Toast.LENGTH_SHORT)
-            toast.show();
-            modelQuestionAdd.questionAddFlag = 0;
-        }
-
-
     }
 
     private fun generateDummyList(size: Int): List<Question_Item> {
