@@ -1,12 +1,11 @@
 package com.example.quizapp.fragment
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -15,12 +14,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.quizapp.R
 import com.example.quizapp.adapter.QuestionItemAdapter
 import com.example.quizapp.databinding.QuestionListBinding
-import com.example.quizapp.databinding.QuizStartBinding
-import com.example.quizapp.viewModel.QuestionAddModel
+import com.example.quizapp.viewModel.QuestionListModel
 import com.example.quizapp.viewModel.UserViewModel
-import com.google.android.material.snackbar.Snackbar
 
-class QuestionListFragment : Fragment(R.layout.question_list) {
+class QuestionListFragment : Fragment(R.layout.question_list){
 
     private lateinit var binding: QuestionListBinding
     private var adapter: RecyclerView.Adapter<QuestionItemAdapter.QuestionViewHolder>? = null
@@ -42,12 +39,12 @@ class QuestionListFragment : Fragment(R.layout.question_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val model : UserViewModel by requireActivity().viewModels()
-        val modelQuestionAdd : QuestionAddModel by requireActivity().viewModels()
+        val modelQuestion : QuestionListModel by requireActivity().viewModels()
 
-        val dummyData = generateDummyList(100)
+        val questions = getQuestionList(modelQuestion.questionList)
 
         val recyclerViewQuestion = binding.recyclerView
-        recyclerViewQuestion.adapter = QuestionItemAdapter(dummyData)
+        recyclerViewQuestion.adapter = QuestionItemAdapter(questions)
         recyclerViewQuestion.layoutManager = LinearLayoutManager(getActivity())
         recyclerViewQuestion.setHasFixedSize(true)
 
@@ -58,17 +55,32 @@ class QuestionListFragment : Fragment(R.layout.question_list) {
 
     }
 
-    private fun generateDummyList(size: Int): List<Question_Item> {
+//    private fun generateDummyList(size: Int): List<Question_Item> {
+//
+//        val list = ArrayList<Question_Item>()
+//
+//        for (i in 0 until size) {
+//            val item = Question_Item("Question $i", "Answer $i")
+//            list += item
+//        }
+//
+//        return list
+//    }
 
+
+
+    private fun getQuestionList(questionList: List<String>): List<Question_Item> {
+        var currentQuestion = 0
         val list = ArrayList<Question_Item>()
+        val size = questionList.size-6
 
-        for (i in 0 until size) {
-            val item = Question_Item("Question $i", "Answer $i")
+        for (i in 0..size step 6) {
+
+            val item = Question_Item(questionList[i], questionList[i+questionList[i+5].toInt()])
             list += item
         }
 
         return list
     }
-
 
 }

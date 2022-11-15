@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.quizapp.R
 import com.example.quizapp.databinding.QuizBodyBinding
+import com.example.quizapp.viewModel.QuestionListModel
 import com.example.quizapp.viewModel.UserViewModel
 
 
@@ -57,6 +58,7 @@ class QuizFragment :Fragment(R.layout.quiz_body) {
 
 
         val model : UserViewModel by requireActivity().viewModels()
+        val modelQuestion : QuestionListModel by requireActivity().viewModels()
 
         val questionText:TextView =binding.questionText
         val radioGroup: RadioGroup =binding.radioGroup
@@ -65,22 +67,15 @@ class QuizFragment :Fragment(R.layout.quiz_body) {
         val answer3Rb:RadioButton=binding.radioButton3
         val answer4Rb:RadioButton=binding.radioButton4
         val nextBtn:Button=binding.nextQuestion
-        val finishBtn:Button=binding.finishQuiz
 
-        val nrOfQuestions=8
-        model.nrOfQuestions=nrOfQuestions
+        model.nrOfQuestions = modelQuestion.nrOfQuestions
 
         val itemServiceTemp = ItemService(ItemRepository)
-        val items : List<Item> = itemServiceTemp.selectRandomItems(nrOfQuestions)
+        val items : List<Item> = itemServiceTemp.selectRandomItems(modelQuestion.nrOfQuestions)
 
-        val itemController= ItemController(itemServiceTemp,requireActivity(),questionText,arrayListOf(answer1Rb,answer2Rb,answer3Rb,answer4Rb),nextBtn,finishBtn,radioGroup)
+        val itemController= ItemController(itemServiceTemp,requireActivity(),questionText,arrayListOf(answer1Rb,answer2Rb,answer3Rb,answer4Rb),nextBtn,radioGroup)
         itemController.quiz(items)
 
-
-        binding.finishQuiz.setOnClickListener{
-            this.findNavController().navigate(R.id.quizEndFragment)
-
-        }
 
     }
 }

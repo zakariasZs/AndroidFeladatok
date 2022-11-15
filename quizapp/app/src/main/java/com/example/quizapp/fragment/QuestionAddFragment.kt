@@ -13,9 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.quizapp.R
 import com.example.quizapp.databinding.QuestionAddFragmentBinding
-import com.example.quizapp.databinding.QuizBodyBinding
-import com.example.quizapp.viewModel.QuestionAddModel
-import com.example.quizapp.viewModel.UserViewModel
+import com.example.quizapp.viewModel.QuestionListModel
 
 
 class QuestionAddFragment : Fragment(R.layout.question_add_fragment) {
@@ -50,7 +48,7 @@ class QuestionAddFragment : Fragment(R.layout.question_add_fragment) {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val model : QuestionAddModel by requireActivity().viewModels()
+        val model : QuestionListModel by requireActivity().viewModels()
 
         binding.questionAdd.setOnClickListener{
 

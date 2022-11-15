@@ -17,21 +17,13 @@ class ItemController(
     private val questionText: TextView,
     private val arrayListOf: ArrayList<RadioButton>,
     private val nextButton: Button,
-    private val finishButton: Button,
     private val radioGroup: RadioGroup
 ) {
     private var currentQuestion = 0
     private val model: UserViewModel by requireActivity.viewModels()
 
     fun quiz(items: List<Item>) {
-
-        if (currentQuestion == model.nrOfQuestions) {
-            requireActivity.findNavController(R.id.navigation)
-                .navigate(R.id.quizEndFragment)
-//            nextButton.visibility = View.INVISIBLE;
-//            finishButton.visibility = View.VISIBLE;
-        }
-
+        radioGroup.clearCheck()
         questionText.text = items[currentQuestion].question
         for (j in items[currentQuestion].answers.indices) {
             arrayListOf[j].text = items[currentQuestion].answers[j]
@@ -41,24 +33,34 @@ class ItemController(
     }
 
     private fun handleNext(items: List<Item>) {
-
         nextButton.setOnClickListener {
             val selectedRadioButton = radioGroup.checkedRadioButtonId
-            val radioButton: View = requireActivity.findViewById(selectedRadioButton)
+            val radioButton: View? = requireActivity.findViewById(selectedRadioButton)
             val idx: Int =
                 requireActivity.findViewById<RadioGroup>(R.id.radioGroup).indexOfChild(radioButton)
-
-            if (currentQuestion < items.size) {
-                if (selectedRadioButton != -1) {
+            if (selectedRadioButton != -1) {
+                if (currentQuestion < model.nrOfQuestions) {
                     if (idx == items[currentQuestion].correct - 1) {
                         model.nrOfCorrectAnswers += 1
                     }
+                    currentQuestion += 1
+                    if (currentQuestion == model.nrOfQuestions) {
+                        requireActivity.findNavController(R.id.fragment_container_view)
+                            .navigate(R.id.quizEndFragment)
+                    } else {
+                        quiz(items)
+                    }
                 }
+            } else {
                 currentQuestion += 1
-                radioGroup.clearCheck();
-                quiz(items)
+                if (currentQuestion == model.nrOfQuestions) {
+                    Log.e("tag", "hali")
+                    requireActivity.findNavController(R.id.fragment_container_view)
+                        .navigate(R.id.quizEndFragment)
+                } else {
+                    quiz(items)
+                }
             }
         }
-
     }
 }

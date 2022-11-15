@@ -31,27 +31,27 @@
             android:text="@string/li_answer"
             android:textColor="@color/orange" />
 
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/answer_text"
-            android:layout_marginTop="25dp"
-            android:text="@string/li_details"
-            android:textColor="#FFFFFF" />
+<!--        <Button-->
+<!--            android:id="@+id/details_button"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@+id/answer_text"-->
+<!--            android:layout_marginTop="25dp"-->
+<!--            android:text="@string/li_details"-->
+<!--            android:textColor="#FFFFFF" />-->
 
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/answer_text"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="25dp"
-            android:layout_toEndOf="@+id/button4"
-            android:minHeight="48dp"
-            android:text="@string/li_delete"
-            android:textColor="#FFFFFF"
-            tools:ignore="TouchTargetSizeCheck" />
+<!--        <Button-->
+<!--            android:id="@+id/delete_button"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@+id/answer_text"-->
+<!--            android:layout_marginStart="35dp"-->
+<!--            android:layout_marginTop="25dp"-->
+<!--            android:layout_toEndOf="@+id/details_button"-->
+<!--            android:minHeight="48dp"-->
+<!--            android:text="@string/li_delete"-->
+<!--            android:textColor="#FFFFFF"-->
+<!--            tools:ignore="TouchTargetSizeCheck" />-->
 
     </RelativeLayout>
 

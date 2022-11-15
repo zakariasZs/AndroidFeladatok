@@ -25,6 +25,8 @@ class QuestionItemAdapter(private val questionList: List<Question_Item>) :
 
         holder.questionText.text = currentItem.question
         holder.answerText.text = currentItem.answer
+
+
     }
 
     override fun getItemCount() = questionList.size
@@ -32,5 +34,9 @@ class QuestionItemAdapter(private val questionList: List<Question_Item>) :
     class QuestionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val questionText: TextView = itemView.findViewById(R.id.question_text)
         val answerText : TextView = itemView.findViewById(R.id.answer_text)
+
+
+
+
     }
 }

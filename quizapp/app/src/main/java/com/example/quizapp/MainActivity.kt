@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.example.quizapp.databinding.ActivityMainBinding
 import com.example.quizapp.fragment.QuestionListFragment
@@ -20,21 +22,17 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
 
-    private val usersettingFragment = UserSettingFragment()
-    private val quizStartFragment = QuizStartFragment()
-    private val questionListFragment = QuestionListFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        replaceFragment(quizStartFragment)
 
         binding.bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){
-                R.id.home -> replaceFragment(quizStartFragment)
-                R.id.question -> replaceFragment(questionListFragment)
-                R.id.settings -> replaceFragment(usersettingFragment)
+                R.id.home -> findNavController(R.id.fragment_container_view).navigate(R.id.quizStartFragment)
+                R.id.question -> findNavController(R.id.fragment_container_view).navigate(R.id.questionListFragment)
+                R.id.settings -> findNavController(R.id.fragment_container_view).navigate(R.id.userSetting)
             else ->{}
             }
             true
@@ -61,16 +59,7 @@ class MainActivity : AppCompatActivity() {
 //                }
 //                .show()
 //        }
-
-
     }
-
-    private fun replaceFragment(fragment: Fragment){
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container_view, fragment)
-        transaction.commit()
-    }
-
 
     override fun onStart() {
         super.onStart()

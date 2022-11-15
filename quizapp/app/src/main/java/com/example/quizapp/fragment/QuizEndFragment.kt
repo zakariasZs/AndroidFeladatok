@@ -39,6 +39,7 @@ class QuizEndFragment : Fragment(R.layout.quiz_end) {
         resultNrText.text = model.nrOfCorrectAnswers.toString().plus( "/").plus(model.nrOfQuestions.toString())
 
         binding.restartQuiz.setOnClickListener{
+            model.nrOfCorrectAnswers = 0
             this.findNavController().navigate(R.id.quizStartFragment)
 
         }
