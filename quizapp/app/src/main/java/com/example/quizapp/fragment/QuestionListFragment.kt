@@ -1,8 +1,6 @@
 package com.example.quizapp.fragment
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,10 +15,11 @@ import com.example.quizapp.databinding.QuestionListBinding
 import com.example.quizapp.viewModel.QuestionListModel
 import com.example.quizapp.viewModel.UserViewModel
 
-class QuestionListFragment : Fragment(R.layout.question_list){
+class QuestionListFragment : Fragment(R.layout.question_list), QuestionItemAdapter.OnItemClickListener {
 
     private lateinit var binding: QuestionListBinding
     private var adapter: RecyclerView.Adapter<QuestionItemAdapter.QuestionViewHolder>? = null
+    private lateinit var questions :List<Question_Item>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +40,7 @@ class QuestionListFragment : Fragment(R.layout.question_list){
         val model : UserViewModel by requireActivity().viewModels()
         val modelQuestion : QuestionListModel by requireActivity().viewModels()
 
-        val questions = getQuestionList(modelQuestion.questionList)
+        questions = getQuestionList(modelQuestion.questionList)
 
         val recyclerViewQuestion = binding.recyclerView
         recyclerViewQuestion.adapter = QuestionItemAdapter(questions)
@@ -67,6 +66,10 @@ class QuestionListFragment : Fragment(R.layout.question_list){
 //        return list
 //    }
 
+    override fun onItemClick(position: Int) {
+        val clickedItem: Question_Item = questions[position]
+    }
+
 
 
     private fun getQuestionList(questionList: List<String>): List<Question_Item> {
@@ -82,5 +85,6 @@ class QuestionListFragment : Fragment(R.layout.question_list){
 
         return list
     }
+
 
 }
