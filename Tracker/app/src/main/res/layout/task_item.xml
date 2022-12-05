@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        tools:ignore="MissingConstraints"
+        android:background="@drawable/tasks_item_shape">
+
+
+        <TextView
+            android:id="@+id/taskType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/task_type"
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/taskName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/task_name"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:layout_below="@id/taskType"
+            android:paddingTop="1sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/taskDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/creation_date"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            android:layout_below="@id/taskName"
+            android:paddingTop="5sp"/>
+
+        <TextView
+            android:id="@+id/taskAssigneeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/task_assignee_text"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            android:layout_below="@id/taskDate"
+            android:paddingTop="5sp"/>
+
+        <TextView
+            android:id="@+id/taskAssignee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/taskAssigneeText"
+            android:layout_marginStart="43dp"
+            android:layout_toEndOf="@+id/taskAssigneeText"
+            android:paddingTop="5sp"
+            android:text="@string/task_assignee"
+            android:textColor="@android:color/black"
+            android:textSize="15sp" />
+
+        <View
+            style="@style/Divider.Horizontal"
+            android:id="@+id/taskDetailDivider"
+            android:layout_below="@id/taskAssigneeText"/>
+
+        <TextView
+            android:id="@+id/taskDeadLineText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/task_dedline_text"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            android:layout_below="@id/taskDetailDivider"
+            android:paddingTop="5sp"/>
+
+        <TextView
+            android:id="@+id/taskDeadLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/taskDeadLineText"
+            android:layout_marginStart="43dp"
+            android:layout_marginBottom="-1dp"
+            android:layout_toEndOf="@+id/taskDeadLineText"
+            android:text="Deadline Date"
+            android:textColor="@android:color/black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/taskPriority"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/taskDeadLineText"
+            android:layout_alignParentEnd="true"
+            android:text="@string/priority_level"
+            android:textColor="@android:color/black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/taskDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/taskDeadLineText"
+            android:layout_marginTop="10sp"
+            android:text="@string/task_description"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            android:maxLength="120"/>
+
+
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

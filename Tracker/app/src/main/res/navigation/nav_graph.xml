@@ -3,24 +3,47 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/splashScreenFragment">
 
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.tracker.fragment.LoginFragment"
         android:label="LoginFragment"
-        tools:layout="@layout/fragment_login">
-
+        tools:layout="@layout/login_screen">
         <action
-            android:id="@+id/action_loginFragment_to_listFragment"
-            app:destination="@id/listFragment"/>
+            android:id="@+id/action_loginFragment_to_tasksFragment"
+            app:destination="@id/tasksFragment" />
     </fragment>
-
     <fragment
-        android:id="@+id/listFragment"
-        android:name="com.example.tracker.fragment.ListFragment"
-        android:label="ListFragment"
-        tools:layout="@layout/fragment_list">
+        android:id="@+id/userProfileFragment"
+        android:name="com.example.tracker.fragment.UserProfileFragment"
+        android:label="UserProfileFragment" />
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.example.tracker.fragment.SplashScreenFragment"
+        android:label="SplashScreenFragment" >
+        <action
+            android:id="@+id/action_splashScreenFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_splashScreenFragment_to_tasksFragment"
+            app:destination="@id/tasksFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tasksFragment"
+        android:name="com.example.tracker.fragment.TasksFragment"
+        android:label="TasksFragment" >
+        <action
+            android:id="@+id/action_tasksFragment_to_addTaskFragment"
+            app:destination="@id/addTaskFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addTaskFragment"
+        android:name="com.example.tracker.fragment.AddTaskFragment"
+        android:label="AddTaskFragment" >
+        <action
+            android:id="@+id/action_addTaskFragment_to_tasksFragment"
+            app:destination="@id/tasksFragment" />
     </fragment>
 
 </navigation>

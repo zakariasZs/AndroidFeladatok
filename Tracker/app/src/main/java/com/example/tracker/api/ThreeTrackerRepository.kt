@@ -2,8 +2,8 @@ package com.example.tracker.api
 
 import com.example.tracker.api.model.LoginRequestBody
 import com.example.tracker.api.model.LoginResponse
-import com.example.tracker.api.model.TaskResponse
-import okhttp3.Response
+import com.example.tracker.api.model.TasksResponse
+import com.example.tracker.api.model.UserProfileResponse
 
 class ThreeTrackerRepository {
 
@@ -15,7 +15,11 @@ class ThreeTrackerRepository {
         return RetrofitInstance.USER_API_SERVICE.login(loginRequestBody)
     }
 
-    suspend fun getTasks(token: String): retrofit2.Response<List<TaskResponse>> {
+    suspend fun getTasks(token: String): retrofit2.Response<List<TasksResponse>> {
         return RetrofitInstance.USER_API_SERVICE.getTasks(token)
+    }
+
+    suspend fun getUserProfileDetail(token: String): retrofit2.Response<UserProfileResponse> {
+        return RetrofitInstance.USER_API_SERVICE.getUserProfileDetail(token)
     }
 }

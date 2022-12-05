@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Activities"
+        android:id="@+id/activities"
+        android:icon="@drawable/ic_baseline_activities"/>
+    <item android:title="My Tasks"
+        android:id="@+id/my_tasks"
+        android:icon="@drawable/ic_baseline_my_tasks"/>
+    <item android:title="My Groups"
+        android:id="@+id/my_groups"
+        android:icon="@drawable/ic_baseline_my_groups"/>
+    <item android:title="Settings"
+        android:id="@+id/settings"
+        android:icon="@drawable/ic_baseline_settings"/>
+</menu>

@@ -5,4 +5,14 @@
     <string name="phone_number">Phone Number</string>
     <string name="office_location_text">Office Location: </string>
     <string name="office_location">Office Location</string>
+    <string name="task_type">Task Type</string>
+    <string name="task_name">Task Name</string>
+    <string name="creation_date">Creation Date</string>
+    <string name="task_assignee">Task Assignee</string>
+    <string name="task_assignee_text">Assignee: </string>
+    <string name="task_dedline_text">Deadline: </string>
+    <string name="priority_level">Priority Level</string>
+    <string name="task_description">Task Description</string>
+    <string name="create_new_task">Create new Task</string>
+    <string name="create_task">Create</string>
 </resources>

@@ -24,6 +24,7 @@ class LoginFragment : Fragment() {
     }
 
     private lateinit var loginViewModel: LoginViewModel
+    var navigationVisibility = View.GONE
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +37,7 @@ class LoginFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_login, container, false)
+        val view = inflater.inflate(R.layout.login_screen, container, false)
 
         val userNameEditText: EditText = view.findViewById(R.id.edittext_name_login_fragment)
         val passwordEditText: EditText = view.findViewById(R.id.edittext_password_login_fragment)
@@ -59,7 +60,7 @@ class LoginFragment : Fragment() {
             loginViewModel.isSuccessful.observe(this.viewLifecycleOwner) {
                 Log.d(TAG, "Logged in successfully = $it")
                 if (it) {
-                    findNavController().navigate(R.id.action_loginFragment_to_listFragment)
+                    findNavController().navigate(R.id.tasksFragment)
                 }
             }
         }

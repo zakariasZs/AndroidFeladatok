@@ -18,7 +18,7 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/userName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
@@ -39,15 +39,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toBottomOf="@+id/userName">
 
         <ImageButton
+            android:id="@+id/groupsButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="scrollToTop"
             android:src="@drawable/ic_baseline_groups_24" />
 
         <ImageButton
+            android:id="@+id/editProfileButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="scrollToTop"
@@ -61,75 +63,79 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
         android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toTopOf="@+id/emailAddress"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/emailAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
+        android:layout_marginBottom="12dp"
         android:text="@string/email_address"
+        app:layout_constraintBottom_toTopOf="@+id/view_separator2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.041"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_separator" />
+        app:layout_constraintHorizontal_bias="0.01"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <View
         android:id="@+id/view_separator2"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
         android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toTopOf="@+id/phoneNumber"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailAddress" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/phoneNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/phone_number"
+        app:layout_constraintBottom_toTopOf="@+id/view_separator3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.041"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_separator2" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <View
         android:id="@+id/view_separator3"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
         android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toTopOf="@+id/officeLocation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phoneNumber" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/officeLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
+        android:layout_marginBottom="100dp"
         android:text="@string/office_location"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.041"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_separator3" />
+        app:layout_constraintHorizontal_bias="0.003"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

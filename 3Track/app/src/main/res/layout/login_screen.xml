@@ -48,7 +48,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_login_fragment"/>
+        app:layout_constraintTop_toBottomOf="@+id/textView_login_fragment"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/edittext_password_login_fragment"
@@ -61,7 +62,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edittext_name_login_fragment"/>
+        app:layout_constraintTop_toBottomOf="@+id/edittext_name_login_fragment"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/button_login_fragment"
