@@ -2,15 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/navigation"
-    app:startDestination="@id/splashScreenFragment">
-    <fragment
-        android:id="@+id/splashScreenFragment"
-        android:name="com.example.a3track.fragment.SplashScreenFragment"
-        android:label="SplashScreenFragment" >
-        <action
-            android:id="@+id/action_splashScreenFragment_to_loginFragment3"
-            app:destination="@id/loginFragment" />
-    </fragment>
+    app:startDestination="@id/loginFragment">
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.a3track.fragment.LoginFragment"

@@ -63,4 +63,13 @@ dependencies {
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
     implementation "com.squareup.retrofit2:converter-gson:2.8.1"
+    //Retrofit&Moshi
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-moshi:2.9.0"
+
+    implementation "com.squareup.moshi:moshi:1.14.0"
+    implementation "com.squareup.moshi:moshi-kotlin:1.14.0"
+
+    // Glide
+    implementation "com.github.bumptech.glide:glide:4.12.0"
 }

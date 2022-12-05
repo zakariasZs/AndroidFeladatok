@@ -2,13 +2,12 @@ package com.example.a3track.api
 
 import com.example.a3track.api.model.LoginRequestBody
 import com.example.a3track.api.model.LoginResponse
-import com.example.a3track.api.model.ProductsListResponse
 
 /**
  * Author:  Zoltan Lorinczi
  * Date:    11/8/2021
  */
-class MarketPlaceRepository {
+class TrackRepository {
 
     /**
      * 'suspend' keyword means that this function can be blocking.
@@ -18,7 +17,4 @@ class MarketPlaceRepository {
         return RetrofitInstance.marketPlaceApiService.login(loginRequestBody)
     }
 
-    suspend fun getProducts(token: String): ProductsListResponse {
-        return RetrofitInstance.marketPlaceApiService.getProducts(token)
-    }
 }

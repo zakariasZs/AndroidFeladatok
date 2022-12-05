@@ -5,25 +5,25 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.a3track.App
-import com.example.a3track.api.MarketPlaceRepository
+import com.example.a3track.api.TrackRepository
 import com.example.a3track.api.model.LoginRequestBody
 import com.example.a3track.manager.SharedPreferencesManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class LoginViewModel(private val repository: MarketPlaceRepository) : ViewModel() {
+class LoginViewModel(private val repository: TrackRepository) : ViewModel() {
 
     val TAG: String = javaClass.simpleName
 
-    lateinit var username: String
-    lateinit var password: String
+    lateinit var passwordKey: String
+    lateinit var email: String
 
     var token: MutableLiveData<String> = MutableLiveData()
     var isSuccessful: MutableLiveData<Boolean> = MutableLiveData()
 
     fun login() {
-        val requestBody = LoginRequestBody(username, password)
+        val requestBody = LoginRequestBody(passwordKey, email)
         viewModelScope.launch {
             executeLogin(requestBody)
         }
