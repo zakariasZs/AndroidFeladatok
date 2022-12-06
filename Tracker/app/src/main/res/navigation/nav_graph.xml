@@ -36,6 +36,9 @@
         <action
             android:id="@+id/action_tasksFragment_to_addTaskFragment"
             app:destination="@id/addTaskFragment" />
+        <action
+            android:id="@+id/action_tasksFragment_to_taskDetailFragment"
+            app:destination="@id/taskDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/addTaskFragment"
@@ -43,6 +46,14 @@
         android:label="AddTaskFragment" >
         <action
             android:id="@+id/action_addTaskFragment_to_tasksFragment"
+            app:destination="@id/tasksFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/taskDetailFragment"
+        android:name="com.example.tracker.fragment.TaskDetailFragment"
+        android:label="TaskDetailFragment" >
+        <action
+            android:id="@+id/action_taskDetailFragment_to_tasksFragment"
             app:destination="@id/tasksFragment" />
     </fragment>
 

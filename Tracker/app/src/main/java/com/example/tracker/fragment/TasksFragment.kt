@@ -44,8 +44,8 @@ class TasksFragment : Fragment(R.layout.task_list), TasksAdapter.OnItemClickList
         val view = inflater.inflate(R.layout.task_list, container, false)
         recyclerView = view.findViewById(R.id.recycler_view)
         setupRecyclerView()
-        tasksViewModel.products.observe(viewLifecycleOwner) {
-            adapter.setData(tasksViewModel.products.value as ArrayList<TasksResponse>)
+        tasksViewModel.tasks.observe(viewLifecycleOwner) {
+            adapter.setData(tasksViewModel.tasks.value as ArrayList<TasksResponse>)
             adapter.notifyDataSetChanged()
             Log.d(TAG, "Tasks list = $it")
         }
@@ -77,6 +77,8 @@ class TasksFragment : Fragment(R.layout.task_list), TasksAdapter.OnItemClickList
 
     override fun onItemClick(position: Int) {
         Log.e("XXX- item clicked: ",position.toString())
+        tasksViewModel.currentItemIndex = position
+        this.findNavController().navigate(R.id.taskDetailFragment)
     }
 
     override fun onItemLongClick(position: Int) {

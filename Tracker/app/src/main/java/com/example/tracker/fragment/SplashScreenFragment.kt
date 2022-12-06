@@ -42,6 +42,7 @@ class SplashScreenFragment : Fragment(R.layout.splash_screen) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        
         val logo: ImageView = binding.threeLogo
         logo.alpha = 0f
         logo.animate().setDuration(1500).alpha(1f).withEndAction {

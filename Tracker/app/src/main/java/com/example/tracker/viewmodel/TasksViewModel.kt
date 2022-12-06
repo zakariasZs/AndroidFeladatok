@@ -16,13 +16,14 @@ class TasksViewModel(private val repository: ThreeTrackerRepository) : ViewModel
         private val TAG: String = javaClass.simpleName
     }
 
-    var products: MutableLiveData<List<TasksResponse>?> = MutableLiveData()
+    var tasks: MutableLiveData<List<TasksResponse>?> = MutableLiveData()
+    var currentItemIndex = 0
 
     init {
-        getProducts()
+        getTasks()
     }
 
-    private fun getProducts() {
+    private fun getTasks() {
         viewModelScope.launch {
             try {
                 val token: String? = App.sharedPreferences.getStringValue(
@@ -38,7 +39,7 @@ class TasksViewModel(private val repository: ThreeTrackerRepository) : ViewModel
 
                     val tasksList = response.body()
                     tasksList?.let {
-                        products.value = tasksList
+                        tasks.value = tasksList
                     }
                 } else {
                     Log.d(TAG, "Get tasks error response: ${response?.errorBody()}")
@@ -50,3 +51,4 @@ class TasksViewModel(private val repository: ThreeTrackerRepository) : ViewModel
         }
     }
 }
+
