@@ -18,17 +18,12 @@ class TasksAdapter(
     private var list: ArrayList<TasksResponse>,
     private val context: Context,
     private val listener: OnItemClickListener,
-    private val listener2: OnItemLongClickListener
+    private val listener2: OnItemLongClickListener,
+    var onItemClicked: ((taskDetail: TasksResponse) -> Unit) ?= null
 ) :
     RecyclerView.Adapter<TasksAdapter.DataViewHolder>() {
 
-    interface OnItemClickListener {
-        fun onItemClick(position: Int)
-    }
 
-    interface OnItemLongClickListener {
-        fun onItemLongClick(position: Int)
-    }
 
     // 1. user defined ViewHolder type - Embedded class!
     inner class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
@@ -47,8 +42,6 @@ class TasksAdapter(
 
         override fun onClick(p0: View?) {
             val currentPosition = this.adapterPosition
-            listener.onItemClick(currentPosition)
-
         }
 
         override fun onLongClick(p0: View?): Boolean {
@@ -56,6 +49,14 @@ class TasksAdapter(
             listener2.onItemLongClick(currentPosition)
             return true
         }
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
+
+    interface OnItemLongClickListener {
+        fun onItemLongClick(position: Int)
     }
 
     // 2. Called only a few times = number of items on screen + a few more ones
@@ -85,6 +86,12 @@ class TasksAdapter(
 //            .load(R.drawable.ic_user)
 //            .override(200, 200)
 //            .into(holder.imageView);
+
+        holder.itemView.setOnClickListener {
+            when (position) {
+                0 -> onItemClicked?.invoke(currentItem)
+            }
+        }
     }
 
     override fun getItemCount() = list.size

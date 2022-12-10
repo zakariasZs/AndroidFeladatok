@@ -15,4 +15,5 @@
     <string name="task_description">Task Description</string>
     <string name="create_new_task">Create new Task</string>
     <string name="create_task">Create</string>
+    <string name="user_name">User Name</string>
 </resources>

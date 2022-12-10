@@ -46,7 +46,7 @@ class UserProfileFragment : Fragment(R.layout.user_profile) {
         return binding.root
 
     }
-    @SuppressLint("SetTextI18n")
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         userProfileViewModel.getUserProfile()
@@ -56,11 +56,15 @@ class UserProfileFragment : Fragment(R.layout.user_profile) {
             {
                 this.findNavController().navigate(R.id.loginFragment)
             }
+            binding.userName.text = userProfileViewModel.last_name.value.toString() + " " + userProfileViewModel.first_name.value.toString()
+            binding.emailAddress.text = userProfileViewModel.email.value.toString()
+            binding.phoneNumber.text = userProfileViewModel.phone_number.value.toString()
+            binding.officeLocation.text = userProfileViewModel.location.value.toString()
+
         }
-        binding.userName.text = userProfileViewModel.last_name.value + userProfileViewModel.last_name.value
-        binding.emailAddress.text = userProfileViewModel.email.value
-        binding.phoneNumber.text = userProfileViewModel.phone_number.value
-        binding.officeLocation.text = userProfileViewModel.location.value
+
+
+
 
         binding.groupsButton.setOnClickListener {
             val toast = Toast.makeText(getActivity(), "Display groups", Toast.LENGTH_SHORT)

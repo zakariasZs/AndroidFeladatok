@@ -1,5 +1,6 @@
 package com.example.tracker.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -19,7 +20,7 @@ import com.example.tracker.api.model.TasksResponse
 import com.example.tracker.viewmodel.TasksViewModel
 import com.example.tracker.viewmodel.TasksViewModelFactory
 
-class TasksFragment : Fragment(R.layout.task_list), TasksAdapter.OnItemClickListener, TasksAdapter.OnItemLongClickListener {
+class TasksFragment : Fragment(R.layout.task_list), TasksAdapter.OnItemClickListener, TasksAdapter.OnItemLongClickListener{
 
     companion object {
         private val TAG: String = javaClass.simpleName
@@ -27,7 +28,7 @@ class TasksFragment : Fragment(R.layout.task_list), TasksAdapter.OnItemClickList
 
     private lateinit var tasksViewModel: TasksViewModel
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: TasksAdapter
+    private lateinit var taskadapter: TasksAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,16 +46,17 @@ class TasksFragment : Fragment(R.layout.task_list), TasksAdapter.OnItemClickList
         recyclerView = view.findViewById(R.id.recycler_view)
         setupRecyclerView()
         tasksViewModel.tasks.observe(viewLifecycleOwner) {
-            adapter.setData(tasksViewModel.tasks.value as ArrayList<TasksResponse>)
-            adapter.notifyDataSetChanged()
+            taskadapter.setData(tasksViewModel.tasks.value as ArrayList<TasksResponse>)
+            taskadapter.notifyDataSetChanged()
             Log.d(TAG, "Tasks list = $it")
         }
+
         return view
     }
 
     private fun setupRecyclerView() {
-        adapter = TasksAdapter(ArrayList(), this.requireContext(), this, this)
-        recyclerView.adapter = adapter
+        taskadapter = TasksAdapter(ArrayList(), this.requireContext(), this, this)
+        recyclerView.adapter = taskadapter
         recyclerView.layoutManager = LinearLayoutManager(this.context)
 //        recyclerView.addItemDecoration(
 //            DividerItemDecoration(
@@ -63,6 +65,8 @@ class TasksFragment : Fragment(R.layout.task_list), TasksAdapter.OnItemClickList
 //            )
 //        )
         recyclerView.setHasFixedSize(true)
+
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -77,7 +81,6 @@ class TasksFragment : Fragment(R.layout.task_list), TasksAdapter.OnItemClickList
 
     override fun onItemClick(position: Int) {
         Log.e("XXX- item clicked: ",position.toString())
-        tasksViewModel.currentItemIndex = position
         this.findNavController().navigate(R.id.taskDetailFragment)
     }
 

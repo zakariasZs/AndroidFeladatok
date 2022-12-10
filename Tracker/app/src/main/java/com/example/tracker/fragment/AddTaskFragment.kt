@@ -9,24 +9,40 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
+import android.widget.Spinner
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.tracker.R
+import com.example.tracker.adapter.TasksAdapter
+import com.example.tracker.adapter.UsersSpinnerAdapter
 import com.example.tracker.api.ThreeTrackerRepository
+import com.example.tracker.api.model.GetUserResponse
+import com.example.tracker.api.model.TasksResponse
 import com.example.tracker.databinding.AddTaskScreenBinding
+import com.example.tracker.databinding.SplashScreenBinding
 import com.example.tracker.viewmodel.GetUsersViewModel
 import com.example.tracker.viewmodel.GetUsersViewModelFactory
+import com.example.tracker.viewmodel.TasksViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
 class AddTaskFragment : Fragment(R.layout.add_task_screen), DatePickerDialog.OnDateSetListener {
 
+
+    companion object {
+        private val TAG: String = javaClass.simpleName
+    }
+
     private lateinit var binding: AddTaskScreenBinding
     private val calendar = Calendar.getInstance()
     private val formatter = SimpleDateFormat("yyyy.MM.dd", Locale.ROOT)
     private lateinit var getUsersViewModel: GetUsersViewModel
+    private lateinit var usersSpinnerAdapter: UsersSpinnerAdapter
+    private lateinit var userSpiner : Spinner
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,8 +67,24 @@ class AddTaskFragment : Fragment(R.layout.add_task_screen), DatePickerDialog.OnD
                         DialogInterface.OnClickListener { dialog, which -> }).show()
             }
         })
+        // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.add_task_screen, container, false)
+        userSpiner = view.findViewById(R.id.selectAssignee)
+        setupSpinnerView()
+        getUsersViewModel.users.observe(viewLifecycleOwner) {
+            usersSpinnerAdapter.setData(getUsersViewModel.users.value as ArrayList<GetUserResponse>)
+            usersSpinnerAdapter.notifyDataSetChanged()
+            Log.d(AddTaskFragment.TAG, "Tasks list = $it")
+        }
+
         binding = AddTaskScreenBinding.inflate(inflater)
-        return binding.root
+
+        return view
+    }
+
+    private fun setupSpinnerView() {
+        usersSpinnerAdapter = UsersSpinnerAdapter(ArrayList(), this.requireContext())
+        userSpiner.adapter = usersSpinnerAdapter
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

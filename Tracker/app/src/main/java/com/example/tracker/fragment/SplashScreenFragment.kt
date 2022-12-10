@@ -56,10 +56,7 @@ class SplashScreenFragment : Fragment(R.layout.splash_screen) {
                     this.findNavController().navigate(R.id.loginFragment)
                 }
 
-
             }
-
-
 
         }
 

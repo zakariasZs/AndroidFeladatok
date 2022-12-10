@@ -17,7 +17,7 @@ class TasksViewModel(private val repository: ThreeTrackerRepository) : ViewModel
     }
 
     var tasks: MutableLiveData<List<TasksResponse>?> = MutableLiveData()
-    var currentItemIndex = 0
+    var currentItemIndex = -1
 
     init {
         getTasks()
