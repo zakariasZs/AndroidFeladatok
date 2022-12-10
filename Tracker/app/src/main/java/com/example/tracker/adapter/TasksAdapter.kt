@@ -1,6 +1,9 @@
 package com.example.tracker.adapter
 
 import android.content.Context
+import android.content.Intent
+import android.icu.text.CaseMap.Title
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +12,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tracker.R
 import com.example.tracker.api.model.TasksResponse
+import com.example.tracker.fragment.TaskDetailFragment
 import com.example.tracker.util.StringUtil.Companion as utils
 import com.example.tracker.util.TaskUtil as utilsTask
-import kotlin.collections.ArrayList
 
 
 class TasksAdapter(
@@ -23,7 +26,7 @@ class TasksAdapter(
 ) :
     RecyclerView.Adapter<TasksAdapter.DataViewHolder>() {
 
-
+    var currentItemId: Int = -1
 
     // 1. user defined ViewHolder type - Embedded class!
     inner class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
@@ -88,9 +91,8 @@ class TasksAdapter(
 //            .into(holder.imageView);
 
         holder.itemView.setOnClickListener {
-            when (position) {
-                0 -> onItemClicked?.invoke(currentItem)
-            }
+            Log.e("XXX- item selected ", currentItem.id.toString())
+//            currentItemId = currentItem.id
         }
     }
 

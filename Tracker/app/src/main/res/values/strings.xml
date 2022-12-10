@@ -20,4 +20,5 @@
     <string name="department">Department</string>
     <string name="deadline_picker">Deadline Picker</string>
     <string name="deadline">DeadLine</string>
+    <string name="my_tasks">My Tasks</string>
 </resources>

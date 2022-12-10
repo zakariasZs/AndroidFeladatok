@@ -9,10 +9,11 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="396dp"
-        android:layout_height="654dp"
+        android:layout_height="match_parent"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="65dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="65dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -44,6 +45,25 @@
         app:srcCompat="@drawable/ic_baseline_add_task_24"
         android:background="@null"
         />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="@string/my_tasks"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintEnd_toStartOf="@+id/addTask"
+        app:layout_constraintHorizontal_bias="0.051"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.54" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -58,6 +58,7 @@ class TasksFragment : Fragment(R.layout.task_list), TasksAdapter.OnItemClickList
         taskadapter = TasksAdapter(ArrayList(), this.requireContext(), this, this)
         recyclerView.adapter = taskadapter
         recyclerView.layoutManager = LinearLayoutManager(this.context)
+        taskadapter.onItemClicked
 //        recyclerView.addItemDecoration(
 //            DividerItemDecoration(
 //                activity,
@@ -76,6 +77,7 @@ class TasksFragment : Fragment(R.layout.task_list), TasksAdapter.OnItemClickList
         addtaskButton.setOnClickListener{
             this.findNavController().navigate(R.id.addTaskFragment)
         }
+
 
     }
 
