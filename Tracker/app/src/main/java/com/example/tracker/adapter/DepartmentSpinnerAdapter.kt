@@ -7,11 +7,10 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import com.example.tracker.R
-import com.example.tracker.api.model.GetUserResponse
+import com.example.tracker.api.model.GetDepartmentResponse
 
-
-class UsersSpinnerAdapter(
-    private var list: ArrayList<GetUserResponse>,
+class DepartmentSpinnerAdapter(
+    private var list: ArrayList<GetDepartmentResponse>,
     private val context: Context
 ): BaseAdapter() {
 
@@ -34,7 +33,7 @@ class UsersSpinnerAdapter(
         val view: View
         val vh: ItemRowHolder
         if (p1 == null) {
-            view = inflater.inflate(R.layout.users_spinner, parent, false)
+            view = inflater.inflate(R.layout.departments_spinner, parent, false)
             vh = ItemRowHolder(view)
             view?.tag = vh
         } else {
@@ -43,18 +42,18 @@ class UsersSpinnerAdapter(
         }
 
         val currentItem = list[p0]
-        vh.user_name.text = currentItem.last_name + " " + currentItem.first_name
+        vh.department_name.text = currentItem.department_name
         return view
     }
 
-    fun setData(newList: java.util.ArrayList<GetUserResponse>) {
+    fun setData(newList: ArrayList<GetDepartmentResponse>) {
         list = newList
     }
 
     private class ItemRowHolder(row: View?) {
-        val user_name: TextView
+        val department_name: TextView
         init {
-            this.user_name = row?.findViewById(R.id.spinner_users) as TextView
+            this.department_name = row?.findViewById(R.id.spinner_departments) as TextView
         }
     }
 

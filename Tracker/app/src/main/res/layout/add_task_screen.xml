@@ -55,109 +55,179 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
-        android:id="@+id/selectAssignee"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="15dp"
-        android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/taskName"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/deadLinePicker"
-        android:layout_width="170dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="15dp"
-        android:background="#DEDEDE"
-        android:text="Deadline Picker"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/selectAssignee" />
-
-    <Spinner
         android:id="@+id/selectPriority"
         android:layout_width="170dp"
         android:layout_height="48dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="16dp"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/selectAssignee"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/taskName"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="15dp"
-        android:textAlignment="center"
-        android:background="#FFDEDEDE"
-        android:hint="@string/task_name"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.066"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/textPriority"
+        tools:ignore="MissingConstraints" />
 
     <Spinner
         android:id="@+id/selectStatus"
         android:layout_width="170dp"
         android:layout_height="48dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="12dp"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.066"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/selectPriority"
+        app:layout_constraintTop_toBottomOf="@+id/textStatus"
         tools:ignore="MissingConstraints" />
 
     <Spinner
         android:id="@+id/selectDepartment"
         android:layout_width="170dp"
         android:layout_height="48dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="12dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.933"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textDepartment"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textPriority"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="15dp"
+        android:text="@string/priority_level"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.003"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectAssignee" />
+
+    <Spinner
+        android:id="@+id/selectAssignee"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="15dp"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deadLinePicker"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/taskAssigneeText"
         tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/deadLinePicker"
+        android:layout_width="170dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="15dp"
+        android:background="#DEDEDE"
+        android:gravity="center"
+        android:text="@string/deadline_picker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.937"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textDeadLine" />
+
+    <EditText
+        android:id="@+id/taskName"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="15dp"
+        android:background="#FFDEDEDE"
+        android:hint="@string/task_name"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <EditText
         android:id="@+id/taskDescription"
-        android:layout_width="361dp"
-        android:layout_height="285dp"
+        android:layout_width="360dp"
+        android:layout_height="221dp"
         android:layout_marginStart="15dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="15dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="25dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="@string/task_description"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectStatus" />
 
-        <!--    <EditText-->
-<!--        android:id="@+id/taskDescription"-->
-<!--        android:layout_width="361dp"-->
-<!--        android:layout_height="285dp"-->
-<!--        android:layout_marginStart="15dp"-->
-<!--        android:layout_marginEnd="15dp"-->
-<!--        android:layout_marginBottom="25dp"-->
-<!--        android:hint="@string/task_description"-->
-<!--        android:textAlignment=""-->
-<!--        app:drawableBottomCompat="@drawable/gradient_blue"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
+    <TextView
+        android:id="@+id/taskAssigneeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="15dp"
+        android:text="@string/task_assignee"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/taskName" />
+
+    <TextView
+        android:id="@+id/textStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="15dp"
+        android:text="@string/status"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.003"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectPriority" />
+
+    <TextView
+        android:id="@+id/textDepartment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="15dp"
+        android:text="@string/department"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.701"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deadLinePicker" />
+
+    <TextView
+        android:id="@+id/textDeadLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="15dp"
+        android:text="@string/deadline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.653"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectAssignee" />
+
+    <!--    <EditText-->
+    <!--        android:id="@+id/taskDescription"-->
+    <!--        android:layout_width="361dp"-->
+    <!--        android:layout_height="285dp"-->
+    <!--        android:layout_marginStart="15dp"-->
+    <!--        android:layout_marginEnd="15dp"-->
+    <!--        android:layout_marginBottom="25dp"-->
+    <!--        android:hint="@string/task_description"-->
+    <!--        android:textAlignment=""-->
+    <!--        app:drawableBottomCompat="@drawable/gradient_blue"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

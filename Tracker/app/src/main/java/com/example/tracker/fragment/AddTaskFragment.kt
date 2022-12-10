@@ -8,25 +8,28 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.Button
 import android.widget.DatePicker
+import android.widget.ImageButton
 import android.widget.Spinner
+import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.tracker.R
-import com.example.tracker.adapter.TasksAdapter
+import com.example.tracker.adapter.DepartmentSpinnerAdapter
 import com.example.tracker.adapter.UsersSpinnerAdapter
 import com.example.tracker.api.ThreeTrackerRepository
+import com.example.tracker.api.model.GetDepartmentResponse
 import com.example.tracker.api.model.GetUserResponse
-import com.example.tracker.api.model.TasksResponse
 import com.example.tracker.databinding.AddTaskScreenBinding
-import com.example.tracker.databinding.SplashScreenBinding
+import com.example.tracker.viewmodel.GetDepartmentViewModel
+import com.example.tracker.viewmodel.GetDepartmentViewModelFactory
 import com.example.tracker.viewmodel.GetUsersViewModel
 import com.example.tracker.viewmodel.GetUsersViewModelFactory
-import com.example.tracker.viewmodel.TasksViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -40,14 +43,23 @@ class AddTaskFragment : Fragment(R.layout.add_task_screen), DatePickerDialog.OnD
     private lateinit var binding: AddTaskScreenBinding
     private val calendar = Calendar.getInstance()
     private val formatter = SimpleDateFormat("yyyy.MM.dd", Locale.ROOT)
+    //for API callback viewmodel, adapeter
     private lateinit var getUsersViewModel: GetUsersViewModel
     private lateinit var usersSpinnerAdapter: UsersSpinnerAdapter
     private lateinit var userSpiner : Spinner
 
+    private lateinit var getDepartmentViewModel: GetDepartmentViewModel
+    private lateinit var departmentSpinnerAdapter: DepartmentSpinnerAdapter
+    private lateinit var departmentSpiner : Spinner
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val factory = GetUsersViewModelFactory(ThreeTrackerRepository())
-        getUsersViewModel = ViewModelProvider(this, factory)[GetUsersViewModel::class.java]
+
+        val factoryUsers = GetUsersViewModelFactory(ThreeTrackerRepository())
+        getUsersViewModel = ViewModelProvider(this, factoryUsers)[GetUsersViewModel::class.java]
+
+        val factoryDepartments = GetDepartmentViewModelFactory(ThreeTrackerRepository())
+        getDepartmentViewModel = ViewModelProvider(this, factoryDepartments)[GetDepartmentViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -70,11 +82,19 @@ class AddTaskFragment : Fragment(R.layout.add_task_screen), DatePickerDialog.OnD
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.add_task_screen, container, false)
         userSpiner = view.findViewById(R.id.selectAssignee)
-        setupSpinnerView()
+        setupUserSpinnerView()
         getUsersViewModel.users.observe(viewLifecycleOwner) {
             usersSpinnerAdapter.setData(getUsersViewModel.users.value as ArrayList<GetUserResponse>)
             usersSpinnerAdapter.notifyDataSetChanged()
             Log.d(AddTaskFragment.TAG, "Tasks list = $it")
+        }
+
+        departmentSpiner = view.findViewById(R.id.selectDepartment)
+        setupDepartmentSpinnerView()
+        getDepartmentViewModel.departments.observe(viewLifecycleOwner) {
+            departmentSpinnerAdapter.setData(getDepartmentViewModel.departments.value as ArrayList<GetDepartmentResponse>)
+            departmentSpinnerAdapter.notifyDataSetChanged()
+            Log.d(AddTaskFragment.TAG, "Departments list = $it")
         }
 
         binding = AddTaskScreenBinding.inflate(inflater)
@@ -82,17 +102,25 @@ class AddTaskFragment : Fragment(R.layout.add_task_screen), DatePickerDialog.OnD
         return view
     }
 
-    private fun setupSpinnerView() {
+    private fun setupUserSpinnerView() {
         usersSpinnerAdapter = UsersSpinnerAdapter(ArrayList(), this.requireContext())
         userSpiner.adapter = usersSpinnerAdapter
+
+    }
+
+    private fun setupDepartmentSpinnerView() {
+        departmentSpinnerAdapter = DepartmentSpinnerAdapter(ArrayList(), this.requireContext())
+        departmentSpiner.adapter = departmentSpinnerAdapter
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         getUsersViewModel.getUsers()
+        getDepartmentViewModel.getDepartments()
 
-        binding.deadLinePicker.setOnClickListener{
+
+        view.findViewById<TextView>(R.id.deadLinePicker).setOnClickListener{
             DatePickerDialog( view.context,
                 this,
                 calendar.get(Calendar.YEAR),
@@ -101,7 +129,8 @@ class AddTaskFragment : Fragment(R.layout.add_task_screen), DatePickerDialog.OnD
             ).show()
         }
 
-        binding.cancelCreation.setOnClickListener() {
+
+        view.findViewById<ImageButton>(R.id.cancelCreation).setOnClickListener{
             AlertDialog.Builder(requireActivity())
                 .setTitle("Close App?")
                 .setMessage("Do you really want to cancel the task creation?")
@@ -109,6 +138,12 @@ class AddTaskFragment : Fragment(R.layout.add_task_screen), DatePickerDialog.OnD
                     DialogInterface.OnClickListener { dialog, which -> this.findNavController().navigate(R.id.tasksFragment);})
                 .setNegativeButton("NO",
                     DialogInterface.OnClickListener { dialog, which -> }).show()
+        }
+
+
+        view.findViewById<Button>(R.id.createButton).setOnClickListener {
+            Log.e("XXX- Assignee ", binding.selectAssignee.getSelectedItemPosition().toString())
+            Log.e("XXX- Department ", binding.selectDepartment.getSelectedItemPosition().toString())
         }
 
     }

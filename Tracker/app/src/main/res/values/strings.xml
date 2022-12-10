@@ -16,4 +16,8 @@
     <string name="create_new_task">Create new Task</string>
     <string name="create_task">Create</string>
     <string name="user_name">User Name</string>
+    <string name="status">Status</string>
+    <string name="department">Department</string>
+    <string name="deadline_picker">Deadline Picker</string>
+    <string name="deadline">DeadLine</string>
 </resources>

@@ -6,20 +6,20 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.tracker.App
 import com.example.tracker.api.ThreeTrackerRepository
-import com.example.tracker.api.model.GetUserResponse
+import com.example.tracker.api.model.GetDepartmentResponse
 import com.example.tracker.manager.SharedPreferencesManager
 import kotlinx.coroutines.launch
 
-class GetUsersViewModel(private val repository: ThreeTrackerRepository) : ViewModel()  {
+class GetDepartmentViewModel(private val repository: ThreeTrackerRepository) : ViewModel()  {
 
     companion object {
         private val TAG: String = javaClass.simpleName
     }
 
-    var users: MutableLiveData<List<GetUserResponse>?> = MutableLiveData()
+    var departments: MutableLiveData<List<GetDepartmentResponse>?> = MutableLiveData()
 
 
-    fun getUsers() {
+    fun getDepartments() {
         viewModelScope.launch {
             try {
                 val token: String? = App.sharedPreferences.getStringValue(
@@ -27,25 +27,24 @@ class GetUsersViewModel(private val repository: ThreeTrackerRepository) : ViewMo
                     "Empty token!"
                 )
                 val response = token?.let {
-                    repository.getUsers(it)
+                    repository.getDepartments(it)
                 }
 
                 if (response?.isSuccessful == true) {
                     Log.d(TAG, "Get users response: ${response.body()}")
 
-                    val usersList = response.body()
-                    usersList?.let {
-                        users.value = usersList
-                        Log.e("XXX user list: ", usersList.size.toString())
+                    val departmentList = response.body()
+                    departmentList?.let {
+                        departments.value = departmentList
+                        Log.e("XXX departments list: ", departmentList.size.toString())
                     }
                 } else {
-                    Log.d(TAG, "Get users error response: ${response?.errorBody()}")
+                    Log.d(TAG, "Get departments error response: ${response?.errorBody()}")
                 }
 
             } catch (e: Exception) {
-                Log.d(TAG, "GetUsersViewModel - getUsers() failed with exception: ${e.message}")
+                Log.d(TAG, "GetDepartmentViewModel - getDepartments() failed with exception: ${e.message}")
             }
         }
     }
-
 }
