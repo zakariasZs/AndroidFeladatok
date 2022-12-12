@@ -12,26 +12,28 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tracker.R
+import com.example.tracker.adapter.MyGroupsAdapter
 import com.example.tracker.adapter.TasksAdapter
 import com.example.tracker.api.ThreeTrackerRepository
-import com.example.tracker.api.model.TasksResponse
-import com.example.tracker.viewmodel.TasksViewModel
+import com.example.tracker.api.model.MyGroupsResponse
+import com.example.tracker.viewmodel.MyGroupsViewModel
+import com.example.tracker.viewmodel.MyGroupsViewModelFactory
 import com.example.tracker.viewmodel.TasksViewModelFactory
 
-class TasksFragment : Fragment(R.layout.task_list), TasksAdapter.OnItemClickListener, TasksAdapter.OnItemLongClickListener{
+class MyGroupsFragment: Fragment(R.layout.my_groups_screen) {
 
     companion object {
         private val TAG: String = javaClass.simpleName
     }
 
-    private lateinit var tasksViewModel: TasksViewModel
+    private lateinit var myGroupsViewModel: MyGroupsViewModel
     private lateinit var recyclerView: RecyclerView
-    private lateinit var taskadapter: TasksAdapter
+    private lateinit var myGroupAdapter: MyGroupsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val factory = TasksViewModelFactory(ThreeTrackerRepository())
-        tasksViewModel = ViewModelProvider(requireActivity(), factory)[TasksViewModel::class.java]
+        val factory = MyGroupsViewModelFactory(ThreeTrackerRepository())
+        myGroupsViewModel = ViewModelProvider(this, factory)[MyGroupsViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -40,12 +42,12 @@ class TasksFragment : Fragment(R.layout.task_list), TasksAdapter.OnItemClickList
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.task_list, container, false)
+        val view = inflater.inflate(R.layout.my_groups_screen, container, false)
         recyclerView = view.findViewById(R.id.recycler_view)
         setupRecyclerView()
-        tasksViewModel.tasks.observe(viewLifecycleOwner) {
-            taskadapter.setData(tasksViewModel.tasks.value as ArrayList<TasksResponse>)
-            taskadapter.notifyDataSetChanged()
+        myGroupsViewModel.groups.observe(viewLifecycleOwner) {
+            myGroupAdapter.setData(myGroupsViewModel.groups.value as ArrayList<MyGroupsResponse>)
+            myGroupAdapter.notifyDataSetChanged()
             Log.d(TAG, "Tasks list = $it")
         }
 
@@ -53,8 +55,8 @@ class TasksFragment : Fragment(R.layout.task_list), TasksAdapter.OnItemClickList
     }
 
     private fun setupRecyclerView() {
-        taskadapter = TasksAdapter(ArrayList(), this.requireContext(), this, this)
-        recyclerView.adapter = taskadapter
+        myGroupAdapter = MyGroupsAdapter(ArrayList(), this.requireContext())
+        recyclerView.adapter = myGroupAdapter
         recyclerView.layoutManager = LinearLayoutManager(this.context)
 //        recyclerView.addItemDecoration(
 //            DividerItemDecoration(
@@ -69,23 +71,7 @@ class TasksFragment : Fragment(R.layout.task_list), TasksAdapter.OnItemClickList
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val addtaskButton = view.findViewById<ImageButton>(R.id.addTask)
-
-        addtaskButton.setOnClickListener{
-            this.findNavController().navigate(R.id.addTaskFragment)
-        }
-
-
     }
 
-    override fun onItemClick(position: Int) {
-        tasksViewModel.taskToShowID = tasksViewModel.tasks.value?.get(position)!!
-        Log.e("XXX- item clicked: ",tasksViewModel.taskToShowID.toString())
 
-        this.findNavController().navigate(R.id.taskDetailFragment)
-    }
-
-    override fun onItemLongClick(position: Int) {
-//        TODO("Not yet implemented")
-    }
 }

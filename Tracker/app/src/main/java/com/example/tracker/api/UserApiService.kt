@@ -22,4 +22,7 @@ interface UserApiService {
 
     @GET(BackendConstants.GET_DEPARTMENTS)
     suspend fun getDepartments(@Header(BackendConstants.HEADER_TOKEN) token: String): retrofit2.Response<List<GetDepartmentResponse>>
+
+    @GET(BackendConstants.GET_MY_GROUPS)
+    suspend fun getMyGroups(@Header(BackendConstants.HEADER_TOKEN) token: String): retrofit2.Response<List<MyGroupsResponse>>
 }

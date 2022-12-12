@@ -25,4 +25,9 @@ class ThreeTrackerRepository {
     suspend fun getDepartments(token: String): retrofit2.Response<List<GetDepartmentResponse>> {
         return RetrofitInstance.USER_API_SERVICE.getDepartments(token)
     }
+
+    suspend fun getMyGroups(token: String): retrofit2.Response<List<MyGroupsResponse>> {
+        return RetrofitInstance.USER_API_SERVICE.getMyGroups(token)
+    }
+
 }

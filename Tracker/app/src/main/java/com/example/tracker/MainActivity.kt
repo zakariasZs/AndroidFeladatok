@@ -23,6 +23,8 @@ class MainActivity : AppCompatActivity() {
             binding.bottomNavigationView.visibility = View.GONE
         }
 
+        binding.bottomNavigationView.setSelectedItemId(R.id.my_tasks);
+
         binding.bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.my_tasks -> {
@@ -32,7 +34,7 @@ class MainActivity : AppCompatActivity() {
                     findNavController(R.id.nav_host_fragment).navigate(R.id.userProfileFragment)
                 }
                 R.id.my_groups -> {
-//                    findNavController(R.id.nav_host_fragment).navigate(R.id.tasksFragment)
+                    findNavController(R.id.nav_host_fragment).navigate(R.id.myGroupsFragment)
                 }
                 R.id.my_activities -> {
 //                    findNavController(R.id.nav_host_fragment).navigate(R.id.tasksFragment)

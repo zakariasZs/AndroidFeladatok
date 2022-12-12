@@ -6,24 +6,23 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.tracker.App
 import com.example.tracker.api.ThreeTrackerRepository
-import com.example.tracker.api.model.TasksResponse
+import com.example.tracker.api.model.MyGroupsResponse
 import com.example.tracker.manager.SharedPreferencesManager
 import kotlinx.coroutines.launch
 
-class TasksViewModel(private val repository: ThreeTrackerRepository) : ViewModel() {
+class MyGroupsViewModel(private val repository: ThreeTrackerRepository) : ViewModel() {
 
     companion object {
         private val TAG: String = javaClass.simpleName
     }
 
-    var tasks: MutableLiveData<List<TasksResponse>?> = MutableLiveData()
-    var taskToShowID : TasksResponse = TasksResponse(-1, "", "", -1, -1, -1, -1, -1, -1, -1, "null")
+    var groups: MutableLiveData<List<MyGroupsResponse>?> = MutableLiveData()
 
     init {
-        getTasks()
+        getMyGroups()
     }
 
-    private fun getTasks() {
+    private fun getMyGroups() {
         viewModelScope.launch {
             try {
                 val token: String? = App.sharedPreferences.getStringValue(
@@ -31,22 +30,22 @@ class TasksViewModel(private val repository: ThreeTrackerRepository) : ViewModel
                     "Empty token!"
                 )
                 val response = token?.let {
-                    repository.getTasks(it)
+                    repository.getMyGroups(it)
                 }
 
                 if (response?.isSuccessful == true) {
-                    Log.d(TAG, "Get tasks response: ${response.body()}")
+                    Log.d(TAG, "Get group response: ${response.body()}")
 
-                    val tasksList = response.body()
-                    tasksList?.let {
-                        tasks.value = tasksList
+                    val groupsList = response.body()
+                    groupsList?.let {
+                        groups.value = groupsList
                     }
                 } else {
-                    Log.d(TAG, "Get tasks error response: ${response?.errorBody()}")
+                    Log.d(TAG, "Get my groups error response: ${response?.errorBody()}")
                 }
 
             } catch (e: Exception) {
-                Log.d(TAG, "TasksViewModel - getTasks() failed with exception: ${e.message}")
+                Log.d(TAG, "MyGroupsViewModel - getMyGroups() failed with exception: ${e.message}")
             }
         }
     }

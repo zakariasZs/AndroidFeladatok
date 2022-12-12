@@ -1,18 +1,18 @@
 package com.example.tracker.adapter
 
 import android.content.Context
-import android.content.Intent
-import android.icu.text.CaseMap.Title
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.TextView
+import androidx.core.graphics.red
+import androidx.core.graphics.toColor
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tracker.R
+import com.example.tracker.api.model.MyGroupsResponse
 import com.example.tracker.api.model.TasksResponse
-import com.example.tracker.fragment.TaskDetailFragment
 import com.example.tracker.util.StringUtil.Companion as utils
 import com.example.tracker.util.TaskUtil as utilsTask
 
@@ -20,9 +20,8 @@ import com.example.tracker.util.TaskUtil as utilsTask
 class TasksAdapter(
     private var list: ArrayList<TasksResponse>,
     private val context: Context,
-    private val listener: OnItemClickListener,
-    private val listener2: OnItemLongClickListener,
-    var onItemClicked: ((taskDetail: TasksResponse) -> Unit) ?= null
+    private var listener: OnItemClickListener,
+    private val listener2: OnItemLongClickListener
 ) :
     RecyclerView.Adapter<TasksAdapter.DataViewHolder>() {
 
@@ -45,6 +44,7 @@ class TasksAdapter(
 
         override fun onClick(p0: View?) {
             val currentPosition = this.adapterPosition
+            listener.onItemClick(currentPosition)
         }
 
         override fun onLongClick(p0: View?): Boolean {
@@ -81,6 +81,7 @@ class TasksAdapter(
         holder.taskView_assignee.text = currentItem.assignedToUserID.toString()
         val itemTypeNr = currentItem.priority
         holder.taskView_priority.text = utilsTask.ItemPriority.values().get(itemTypeNr).toString()
+        holder.taskView_priority.currentTextColor
         holder.taskView_deadline.text = utils.convertLongToTime(currentItem.deadline)
 
         holder.itemView.animation = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.tasks_item_anim)
@@ -89,11 +90,6 @@ class TasksAdapter(
 //            .load(R.drawable.ic_user)
 //            .override(200, 200)
 //            .into(holder.imageView);
-
-        holder.itemView.setOnClickListener {
-            Log.e("XXX- item selected ", currentItem.id.toString())
-//            currentItemId = currentItem.id
-        }
     }
 
     override fun getItemCount() = list.size
