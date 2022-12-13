@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -61,6 +62,9 @@ class LoginFragment : Fragment() {
                 Log.d(TAG, "Logged in successfully = $it")
                 if (it) {
                     findNavController().navigate(R.id.tasksFragment)
+                }else{
+                    val toast = Toast.makeText(getActivity(), "Wrong Credentials", Toast.LENGTH_SHORT)
+                    toast.show();
                 }
             }
         }

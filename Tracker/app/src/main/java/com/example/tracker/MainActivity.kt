@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         if(supportFragmentManager.findFragmentById(R.id.splashScreenFragment) is SplashScreenFragment || supportFragmentManager.findFragmentById(R.id.loginFragment) is LoginFragment ){
-            binding.bottomNavigationView.visibility = View.GONE
+            binding.bottomNavigationView.visibility = View.INVISIBLE
         }
 
         binding.bottomNavigationView.setSelectedItemId(R.id.my_tasks);

@@ -13,10 +13,6 @@ class StringUtil {
             return format.format(date)
         }
 
-
-
     }
-
-
 
 }

@@ -5,22 +5,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.tracker.R
-import com.example.tracker.adapter.TasksAdapter
-import com.example.tracker.api.ThreeTrackerRepository
 import com.example.tracker.api.model.TasksResponse
 import com.example.tracker.databinding.TaskDetailScreenBinding
-import com.example.tracker.databinding.UserProfileBinding
 import com.example.tracker.viewmodel.TasksViewModel
-import com.example.tracker.viewmodel.TasksViewModelFactory
+import com.example.tracker.util.TaskUtil as utilsTask
+import com.example.tracker.util.StringUtil.Companion as utils
 
 class TaskDetailFragment : Fragment(R.layout.task_detail_screen) {
 
@@ -53,7 +46,16 @@ class TaskDetailFragment : Fragment(R.layout.task_detail_screen) {
             this.findNavController().navigate(R.id.tasksFragment)
         }
         Log.e("XXX- selected item info ", tasksViewModel.taskToShowID.toString())
-        binding.textView.text = tasksViewModel.taskToShowID.title
+        binding.taskName.text = tasksViewModel.taskToShowID.title
+        binding.taskDepartment.text = tasksViewModel.taskToShowID.departmentID.toString()
+        binding.taskPriority.text = utilsTask.ItemPriority.values().get(tasksViewModel.taskToShowID.priority).toString()
+        binding.taskdeadline.text = utils.convertLongToTime(tasksViewModel.taskToShowID.deadline)
+        binding.taskDetail.text = tasksViewModel.taskToShowID.description
+
+        binding.backToTasks.setOnClickListener {
+            tasksViewModel.taskToShowID = TasksResponse(-1, "", "", -1, -1, -1, -1, -1, -1, -1, "null")
+            this.findNavController().navigate(R.id.tasksFragment)
+        }
 
     }
 
