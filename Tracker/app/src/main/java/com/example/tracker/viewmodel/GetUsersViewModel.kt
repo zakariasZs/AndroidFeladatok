@@ -48,4 +48,23 @@ class GetUsersViewModel(private val repository: ThreeTrackerRepository) : ViewMo
         }
     }
 
+
+
+    fun getUserIdFromList(position: Int): Int {
+        try {
+            users.value?.forEachIndexed{
+
+                    index, element ->
+                if (index == position) {
+                    return element.id
+                }
+            }
+
+        } catch (e: Exception) {
+            Log.d(TAG, "GetUsersViewModel - getUserIdFromList() failed with exception: ${e.message}")
+            return -1
+        }
+        return -1
+    }
+
 }

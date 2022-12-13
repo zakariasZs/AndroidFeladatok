@@ -17,7 +17,7 @@ class TasksViewModel(private val repository: ThreeTrackerRepository) : ViewModel
     }
 
     var tasks: MutableLiveData<List<TasksResponse>?> = MutableLiveData()
-    var taskToShowID : TasksResponse = TasksResponse(-1, "", "", -1, -1, -1, -1, -1, -1, -1, "null")
+    var taskToShow : TasksResponse = TasksResponse(-1, "", "", -1, -1, -1, -1, -1, -1, -1, "null")
 
     init {
         getTasks()
@@ -50,5 +50,6 @@ class TasksViewModel(private val repository: ThreeTrackerRepository) : ViewModel
             }
         }
     }
+
 }
 

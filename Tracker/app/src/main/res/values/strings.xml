@@ -28,4 +28,16 @@
     <string name="creator_name">Creator Name</string>
     <string name="priority">Priority :</string>
     <string name="deadline_date">Deadline Date:</string>
+    <string-array name="priority_array">
+        <item>Low</item>
+        <item>Moderate</item>
+        <item>High</item>
+    </string-array>
+    <string-array name="status_array">
+        <item>New</item>
+        <item>In progress</item>
+        <item>Done</item>
+        <item>Blocked</item>
+    </string-array>
+
 </resources>

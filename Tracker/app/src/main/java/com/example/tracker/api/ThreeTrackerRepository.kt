@@ -30,4 +30,8 @@ class ThreeTrackerRepository {
         return RetrofitInstance.USER_API_SERVICE.getMyGroups(token)
     }
 
+    suspend fun postTask(token: String, taskPostBody: TaskPostBody): retrofit2.Response<TaskPostResponse> {
+        return RetrofitInstance.USER_API_SERVICE.taskPost(token, taskPostBody)
+    }
+
 }

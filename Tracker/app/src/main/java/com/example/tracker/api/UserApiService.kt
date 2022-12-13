@@ -25,4 +25,7 @@ interface UserApiService {
 
     @GET(BackendConstants.GET_MY_GROUPS)
     suspend fun getMyGroups(@Header(BackendConstants.HEADER_TOKEN) token: String): retrofit2.Response<List<MyGroupsResponse>>
+
+    @POST(BackendConstants.POST_TASK)
+    suspend fun taskPost(@Header(BackendConstants.HEADER_TOKEN) token: String,@Body taskPostBody: TaskPostBody): retrofit2.Response<TaskPostResponse>
 }

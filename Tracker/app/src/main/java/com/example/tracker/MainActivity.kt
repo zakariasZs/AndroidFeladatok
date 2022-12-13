@@ -19,8 +19,8 @@ class MainActivity : AppCompatActivity() {
         val binding: ActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if(supportFragmentManager.findFragmentById(R.id.splashScreenFragment) is SplashScreenFragment || supportFragmentManager.findFragmentById(R.id.loginFragment) is LoginFragment ){
-            binding.bottomNavigationView.visibility = View.INVISIBLE
+        if(supportFragmentManager.findFragmentById(R.id.splashScreenFragment) == splashScreen ){
+            binding.bottomNavigationView.visibility = View.GONE
         }
 
         binding.bottomNavigationView.setSelectedItemId(R.id.my_tasks);

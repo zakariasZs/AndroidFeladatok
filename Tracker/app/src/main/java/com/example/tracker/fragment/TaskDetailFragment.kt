@@ -42,18 +42,18 @@ class TaskDetailFragment : Fragment(R.layout.task_detail_screen) {
         super.onViewCreated(view, savedInstanceState)
         val tasksViewModel : TasksViewModel by requireActivity().viewModels()
 
-        if(tasksViewModel.taskToShowID.id == -1){
+        if(tasksViewModel.taskToShow.id == -1){
             this.findNavController().navigate(R.id.tasksFragment)
         }
-        Log.e("XXX- selected item info ", tasksViewModel.taskToShowID.toString())
-        binding.taskName.text = tasksViewModel.taskToShowID.title
-        binding.taskDepartment.text = tasksViewModel.taskToShowID.departmentID.toString()
-        binding.taskPriority.text = utilsTask.ItemPriority.values().get(tasksViewModel.taskToShowID.priority).toString()
-        binding.taskdeadline.text = utils.convertLongToTime(tasksViewModel.taskToShowID.deadline)
-        binding.taskDetail.text = tasksViewModel.taskToShowID.description
+        Log.e("XXX- selected item info ", tasksViewModel.taskToShow.toString())
+        binding.taskName.text = tasksViewModel.taskToShow.title
+        binding.taskDepartment.text = tasksViewModel.taskToShow.departmentID.toString()
+        binding.taskPriority.text = utilsTask.ItemPriority.values().get(tasksViewModel.taskToShow.priority).toString()
+        binding.taskdeadline.text = utils.convertLongToTime(tasksViewModel.taskToShow.deadline)
+        binding.taskDetail.text = tasksViewModel.taskToShow.description
 
         binding.backToTasks.setOnClickListener {
-            tasksViewModel.taskToShowID = TasksResponse(-1, "", "", -1, -1, -1, -1, -1, -1, -1, "null")
+            tasksViewModel.taskToShow = TasksResponse(-1, "", "", -1, -1, -1, -1, -1, -1, -1, "null")
             this.findNavController().navigate(R.id.tasksFragment)
         }
 

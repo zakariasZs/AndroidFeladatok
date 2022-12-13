@@ -79,8 +79,8 @@ class TasksFragment : Fragment(R.layout.task_list), TasksAdapter.OnItemClickList
     }
 
     override fun onItemClick(position: Int) {
-        tasksViewModel.taskToShowID = tasksViewModel.tasks.value?.get(position)!!
-        Log.e("XXX- item clicked: ",tasksViewModel.taskToShowID.toString())
+        tasksViewModel.taskToShow = tasksViewModel.tasks.value?.get(position)!!
+        Log.e("XXX- item clicked: ",tasksViewModel.taskToShow.toString())
 
         this.findNavController().navigate(R.id.taskDetailFragment)
     }

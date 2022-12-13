@@ -8,14 +8,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.Button
-import android.widget.DatePicker
-import android.widget.ImageButton
-import android.widget.Spinner
-import android.widget.TextView
+import android.widget.*
 import androidx.activity.OnBackPressedCallback
-import androidx.core.view.get
+import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -26,12 +21,10 @@ import com.example.tracker.api.ThreeTrackerRepository
 import com.example.tracker.api.model.GetDepartmentResponse
 import com.example.tracker.api.model.GetUserResponse
 import com.example.tracker.databinding.AddTaskScreenBinding
-import com.example.tracker.viewmodel.GetDepartmentViewModel
-import com.example.tracker.viewmodel.GetDepartmentViewModelFactory
-import com.example.tracker.viewmodel.GetUsersViewModel
-import com.example.tracker.viewmodel.GetUsersViewModelFactory
+import com.example.tracker.viewmodel.*
 import java.text.SimpleDateFormat
 import java.util.*
+import com.example.tracker.util.TaskUtil as utilsTask
 
 class AddTaskFragment : Fragment(R.layout.add_task_screen), DatePickerDialog.OnDateSetListener {
 
@@ -52,6 +45,11 @@ class AddTaskFragment : Fragment(R.layout.add_task_screen), DatePickerDialog.OnD
     private lateinit var departmentSpinnerAdapter: DepartmentSpinnerAdapter
     private lateinit var departmentSpiner : Spinner
 
+    private lateinit var prioritytSpiner : Spinner
+    private lateinit var statustSpiner : Spinner
+
+    private lateinit var taskPostViewModel: TaskPostViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -60,6 +58,10 @@ class AddTaskFragment : Fragment(R.layout.add_task_screen), DatePickerDialog.OnD
 
         val factoryDepartments = GetDepartmentViewModelFactory(ThreeTrackerRepository())
         getDepartmentViewModel = ViewModelProvider(this, factoryDepartments)[GetDepartmentViewModel::class.java]
+
+
+        val taskPostViewModelFactory = TaskPostViewModelFactory(ThreeTrackerRepository())
+        taskPostViewModel = ViewModelProvider(this, taskPostViewModelFactory)[TaskPostViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -97,6 +99,20 @@ class AddTaskFragment : Fragment(R.layout.add_task_screen), DatePickerDialog.OnD
             Log.d(AddTaskFragment.TAG, "Departments list = $it")
         }
 
+        prioritytSpiner = view.findViewById(R.id.selectPriority)
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        val adapterPriority = ArrayAdapter.createFromResource(view.context,
+            R.array.priority_array, android.R.layout.simple_spinner_item)
+        // Specify the layout to use when the list of choices appears
+        adapterPriority.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        // Apply the adapter to the spinner
+        prioritytSpiner.adapter = adapterPriority
+
+        statustSpiner = view.findViewById(R.id.selectStatus)
+        val adapterStatus = ArrayAdapter.createFromResource(view.context,R.array.status_array, android.R.layout.simple_spinner_item)
+        adapterStatus.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        statustSpiner.adapter = adapterStatus
+
         binding = AddTaskScreenBinding.inflate(inflater)
 
         return view
@@ -112,6 +128,7 @@ class AddTaskFragment : Fragment(R.layout.add_task_screen), DatePickerDialog.OnD
         departmentSpinnerAdapter = DepartmentSpinnerAdapter(ArrayList(), this.requireContext())
         departmentSpiner.adapter = departmentSpinnerAdapter
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -142,16 +159,56 @@ class AddTaskFragment : Fragment(R.layout.add_task_screen), DatePickerDialog.OnD
 
 
         view.findViewById<Button>(R.id.createButton).setOnClickListener {
-            Log.e("XXX- Assignee ", binding.selectAssignee.getSelectedItemPosition().toString())
-            Log.e("XXX- Department ", binding.selectDepartment.getSelectedItemPosition().toString())
+
+            val title = view.findViewById<TextView>(R.id.taskName).text.toString()
+            val description = view.findViewById<TextView>(R.id.taskDescription).text.toString()
+            val assigneeToUserIdTemp = view.findViewById<Spinner>(R.id.selectAssignee).selectedItemId.toInt()
+            val assigneeToUserId = getUsersViewModel.getUserIdFromList(assigneeToUserIdTemp)
+            val priority = view.findViewById<Spinner>(R.id.selectPriority).selectedItemId.toInt()
+//            val deadLine = view.findViewById<TextView>(R.id.deadLinePicker).text.toString()
+            val deadLine: Long = 1670272963000
+            val departmentIdTemp = view.findViewById<Spinner>(R.id.selectDepartment).selectedItemId.toInt()
+            val departmentId = getDepartmentViewModel.getDepartmentIdFromList(departmentIdTemp)
+            val status = view.findViewById<Spinner>(R.id.selectStatus).selectedItemId.toInt()
+
+
+//            Log.e("XXX- Task Name ", title)
+//            Log.e("XXX- Assignee ", "$assigneeToUserId")
+//            Log.e("XXX- Department ", departmentId.toString())
+//            Log.e("XXX- DeadLine: ", view.findViewById<TextView>(R.id.deadLinePicker).text.toString())
+//            Log.e("XXX- DeadLinePassed: ", deadLine.toString())
+//            Log.e("XXX- Priority: ", priority.toString())
+//            Log.e("XXX- Status: ", status.toString())
+//            Log.e("XXX- Details: ", description)
+
+
+
+
+            taskPostViewModel.taskPost(title, description, assigneeToUserId, priority, deadLine, departmentId, status)
+
+            taskPostViewModel.isSuccessful.observe(this.viewLifecycleOwner) {
+                Log.d(TAG, "Task post successfully = $it")
+                if (it) {
+                    val toast = Toast.makeText(getActivity(), "Task $title Created", Toast.LENGTH_SHORT)
+                    toast.show();
+                    Log.e("XXX- Task Post ", taskPostViewModel.isSuccessful.toString())
+                    findNavController().navigate(R.id.tasksFragment)
+                }else{
+                    val toast = Toast.makeText(getActivity(), "Error with the data", Toast.LENGTH_SHORT)
+                    toast.show();
+                }
+            }
+
         }
 
     }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        Log.e("XXX- Calendar: ", "$year -- $month -- $dayOfMonth")
+        Log.e("XXX- Calendar: ", "$year-$month-$dayOfMonth")
         calendar.set(year, month, dayOfMonth)
-        displayFormatedDate(calendar.timeInMillis)
+        Log.e("XXX- Calendar: ", calendar.timeInMillis.toString())
+        val timestamp: Long = (calendar.timeInMillis)
+        view?.findViewById<Button>(R.id.deadLinePicker)?.text = formatter.format(timestamp).toString()
     }
 
     private fun displayFormatedDate( timestamp: Long){
