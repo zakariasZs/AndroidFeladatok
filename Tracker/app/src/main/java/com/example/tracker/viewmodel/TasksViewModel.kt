@@ -23,7 +23,7 @@ class TasksViewModel(private val repository: ThreeTrackerRepository) : ViewModel
         getTasks()
     }
 
-    private fun getTasks() {
+    fun getTasks() {
         viewModelScope.launch {
             try {
                 val token: String? = App.sharedPreferences.getStringValue(

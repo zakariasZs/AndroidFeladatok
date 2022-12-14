@@ -52,6 +52,7 @@ class TasksFragment : Fragment(R.layout.task_list), TasksAdapter.OnItemClickList
         return view
     }
 
+
     private fun setupRecyclerView() {
         taskadapter = TasksAdapter(ArrayList(), this.requireContext(), this, this)
         recyclerView.adapter = taskadapter
@@ -70,6 +71,8 @@ class TasksFragment : Fragment(R.layout.task_list), TasksAdapter.OnItemClickList
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val addtaskButton = view.findViewById<ImageButton>(R.id.addTask)
+
+        tasksViewModel.getTasks()
 
         addtaskButton.setOnClickListener{
             this.findNavController().navigate(R.id.addTaskFragment)

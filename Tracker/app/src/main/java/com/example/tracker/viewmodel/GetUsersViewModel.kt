@@ -36,7 +36,7 @@ class GetUsersViewModel(private val repository: ThreeTrackerRepository) : ViewMo
                     val usersList = response.body()
                     usersList?.let {
                         users.value = usersList
-                        Log.e("XXX user list: ", usersList.size.toString())
+                        Log.e("XXX user list ", usersList.size.toString())
                     }
                 } else {
                     Log.d(TAG, "Get users error response: ${response?.errorBody()}")
@@ -66,5 +66,24 @@ class GetUsersViewModel(private val repository: ThreeTrackerRepository) : ViewMo
         }
         return -1
     }
+
+    fun getUserFromListByID(position: Int): String {
+        Log.e("XXX- position ", position.toString())
+        try {
+            users.value?.forEach{ element ->
+//                Log.e("XXX- forEach ", element.id.toString())
+                if (element.id.equals(position)) {
+                    val userName = element.first_name + " " + element.last_name
+                    return userName
+                }
+            }
+
+        } catch (e: Exception) {
+            Log.d(TAG, "GetUsersViewModel - getUserIdFromList() failed with exception: ${e.message}")
+            return "Bad Request"
+        }
+        return "No User found"
+    }
+
 
 }

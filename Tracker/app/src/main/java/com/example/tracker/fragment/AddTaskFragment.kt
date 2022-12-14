@@ -88,7 +88,7 @@ class AddTaskFragment : Fragment(R.layout.add_task_screen), DatePickerDialog.OnD
         getUsersViewModel.users.observe(viewLifecycleOwner) {
             usersSpinnerAdapter.setData(getUsersViewModel.users.value as ArrayList<GetUserResponse>)
             usersSpinnerAdapter.notifyDataSetChanged()
-            Log.d(AddTaskFragment.TAG, "Tasks list = $it")
+            Log.d(AddTaskFragment.TAG, "Users list = $it")
         }
 
         departmentSpiner = view.findViewById(R.id.selectDepartment)

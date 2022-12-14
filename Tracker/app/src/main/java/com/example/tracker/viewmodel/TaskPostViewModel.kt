@@ -28,35 +28,37 @@ class TaskPostViewModel(private val repository: ThreeTrackerRepository) : ViewMo
     }
 
     private suspend fun executeTaskCreation(requestBody: TaskPostBody) {
-        try {
+        viewModelScope.launch {
+            try {
 
-            val token: String? = App.sharedPreferences.getStringValue(
-                SharedPreferencesManager.KEY_TOKEN,
-                "Empty token!"
-            )
+                val token: String? = App.sharedPreferences.getStringValue(
+                    SharedPreferencesManager.KEY_TOKEN,
+                    "Empty token!"
+                )
 
-            val response = token?.let {
-                repository.postTask(it, requestBody)
-            }
-
-//            val response = withContext(Dispatchers.IO) {
-//                token?.let { repository.postTask(requestBody, it) }
+//            val response = token?.let {
+//                repository.postTask(it, requestBody)
 //            }
-            if (response?.isSuccessful == true) {
-                Log.d(TAG, "Task Post response: ${response.body()}")
 
-                val responseToken = response.body()?.message
-                responseToken?.let {
-                    Log.e("XXX Task Post Message ", it)
-                    isSuccessful.value = true
+                val response = withContext(Dispatchers.IO) {
+                    token?.let { repository.postTask(it, requestBody) }
                 }
-            } else {
-                Log.d(TAG, "Task creation error response: ${response?.message()}")
+                if (response?.isSuccessful == true) {
+                    Log.d(TAG, "Task Post response: ${response.body()}")
+
+                    val responseToken = response.body()?.message
+                    responseToken?.let {
+                        Log.e("XXX Task Post Message ", it)
+                        isSuccessful.value = true
+                    }
+                } else {
+                    Log.d(TAG, "Task creation error response: ${response?.message()}")
+                    isSuccessful.value = false
+                }
+            } catch (e: Exception) {
+                Log.d(TAG, "TaskPostViewModel - taskPost() failed with exception: ${e.message}")
                 isSuccessful.value = false
             }
-        } catch (e: Exception) {
-            Log.d(TAG, "TaskPostViewModel - taskPost() failed with exception: ${e.message}")
-            isSuccessful.value = false
         }
     }
 }
