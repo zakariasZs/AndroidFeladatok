@@ -1,6 +1,7 @@
 package com.example.tracker.adapter
 
 import android.content.Context
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -85,6 +86,18 @@ class TasksAdapter(
         holder.taskView_deadline.text = utils.convertLongToTime(currentItem.deadline)
 
         holder.itemView.animation = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.tasks_item_anim)
+
+        when (currentItem.priority) {
+            0 -> {
+                holder.taskView_priority.setTextColor(Color.GREEN)
+            }
+            1 -> {
+                holder.taskView_priority.setTextColor(Color.YELLOW)
+            }
+            2 -> {
+                holder.taskView_priority.setTextColor(Color.RED)
+            }
+        }
 
 //        Glide.with(this.context)
 //            .load(R.drawable.ic_user)

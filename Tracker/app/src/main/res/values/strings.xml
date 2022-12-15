@@ -28,6 +28,8 @@
     <string name="creator_name">Creator Name</string>
     <string name="priority">Priority :</string>
     <string name="deadline_date">Deadline Date:</string>
+    <string name="my_profile">My Profile</string>
+    <string name="edit_profile">Edit Profile</string>
     <string-array name="priority_array">
         <item>Low</item>
         <item>Moderate</item>

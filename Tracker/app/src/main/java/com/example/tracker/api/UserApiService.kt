@@ -28,4 +28,7 @@ interface UserApiService {
 
     @POST(BackendConstants.POST_TASK)
     suspend fun taskPost(@Header(BackendConstants.HEADER_TOKEN) token: String,@Body taskPostBody: TaskPostBody): retrofit2.Response<TaskPostResponse>
+
+    @POST(BackendConstants.UPDATE_PROFILE)
+    suspend fun updateProfile(@Header(BackendConstants.HEADER_TOKEN) token: String,@Body updateProfile: UpdateProfile): retrofit2.Response<UpdateProfileResponse>
 }

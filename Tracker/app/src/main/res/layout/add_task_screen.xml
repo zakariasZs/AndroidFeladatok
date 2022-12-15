@@ -150,12 +150,12 @@
 
     <EditText
         android:id="@+id/taskDescription"
-        android:layout_width="360dp"
-        android:layout_height="221dp"
+        android:layout_width="370dp"
+        android:layout_height="245dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="15dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginBottom="30dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="@string/task_description"

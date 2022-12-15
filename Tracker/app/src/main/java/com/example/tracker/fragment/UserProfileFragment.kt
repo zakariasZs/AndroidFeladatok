@@ -65,15 +65,8 @@ class UserProfileFragment : Fragment(R.layout.user_profile) {
 
 
 
-
-        binding.groupsButton.setOnClickListener {
-            val toast = Toast.makeText(getActivity(), "Display groups", Toast.LENGTH_SHORT)
-            toast.show();
-        }
-
         binding.editProfileButton.setOnClickListener {
-            val toast = Toast.makeText(getActivity(), "Edit profile", Toast.LENGTH_SHORT)
-            toast.show();
+            this.findNavController().navigate(R.id.editProfileFragment)
         }
 
     }

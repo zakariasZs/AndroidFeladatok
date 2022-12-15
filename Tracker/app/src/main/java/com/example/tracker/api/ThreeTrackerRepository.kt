@@ -34,4 +34,8 @@ class ThreeTrackerRepository {
         return RetrofitInstance.USER_API_SERVICE.taskPost(token, taskPostBody)
     }
 
+    suspend fun updateProfile(token: String, UpdateProfile: UpdateProfile): retrofit2.Response<UpdateProfileResponse> {
+        return RetrofitInstance.USER_API_SERVICE.updateProfile(token, UpdateProfile)
+    }
+
 }
