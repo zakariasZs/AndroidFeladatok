@@ -6,8 +6,6 @@ import android.util.Log
 import android.view.View
 import androidx.navigation.findNavController
 import com.example.tracker.databinding.ActivityMainBinding
-import com.example.tracker.fragment.LoginFragment
-import com.example.tracker.fragment.SplashScreenFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,7 +35,7 @@ class MainActivity : AppCompatActivity() {
                     findNavController(R.id.nav_host_fragment).navigate(R.id.myGroupsFragment)
                 }
                 R.id.my_activities -> {
-//                    findNavController(R.id.nav_host_fragment).navigate(R.id.tasksFragment)
+                    findNavController(R.id.nav_host_fragment).navigate(R.id.activityFragment)
                 }
                 else ->{
                     false

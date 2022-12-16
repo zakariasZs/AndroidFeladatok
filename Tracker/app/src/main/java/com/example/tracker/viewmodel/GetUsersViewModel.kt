@@ -68,7 +68,6 @@ class GetUsersViewModel(private val repository: ThreeTrackerRepository) : ViewMo
     }
 
     fun getUserFromListByID(position: Int): String {
-        Log.e("XXX- position ", position.toString())
         try {
             users.value?.forEach{ element ->
 //                Log.e("XXX- forEach ", element.id.toString())

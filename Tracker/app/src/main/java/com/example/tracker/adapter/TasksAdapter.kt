@@ -26,7 +26,6 @@ class TasksAdapter(
 ) :
     RecyclerView.Adapter<TasksAdapter.DataViewHolder>() {
 
-    var currentItemId: Int = -1
 
     // 1. user defined ViewHolder type - Embedded class!
     inner class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),

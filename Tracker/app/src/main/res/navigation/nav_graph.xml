@@ -87,5 +87,9 @@
             android:id="@+id/action_editProfileFragment_to_userProfileFragment"
             app:destination="@id/userProfileFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/activityFragment"
+        android:name="com.example.tracker.fragment.ActivityFragment"
+        android:label="ActivityFragment" />
 
 </navigation>

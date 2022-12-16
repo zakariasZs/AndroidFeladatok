@@ -18,6 +18,7 @@ object BackendConstants {
     const val GET_MY_GROUPS = "department"
     const val POST_TASK = "task/create"
     const val UPDATE_PROFILE = "users/updateProfile"
+    const val GET_ACTIVITIES = "activity/getActivities"
 
     /**
      * Header values.

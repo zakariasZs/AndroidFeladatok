@@ -31,4 +31,7 @@ interface UserApiService {
 
     @POST(BackendConstants.UPDATE_PROFILE)
     suspend fun updateProfile(@Header(BackendConstants.HEADER_TOKEN) token: String,@Body updateProfile: UpdateProfile): retrofit2.Response<UpdateProfileResponse>
+
+    @GET(BackendConstants.GET_ACTIVITIES)
+    suspend fun getActivities(@Header(BackendConstants.HEADER_TOKEN) token: String): retrofit2.Response<List<ActivitiesResponse>>
 }

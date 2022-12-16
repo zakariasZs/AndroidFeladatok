@@ -30,6 +30,9 @@
     <string name="deadline_date">Deadline Date:</string>
     <string name="my_profile">My Profile</string>
     <string name="edit_profile">Edit Profile</string>
+    <string name="my_activities">My Activities</string>
+    <string name="activity_type">Activity Type</string>
+    <string name="posted_by">Posted By</string>
     <string-array name="priority_array">
         <item>Low</item>
         <item>Moderate</item>

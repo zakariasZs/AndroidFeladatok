@@ -38,4 +38,7 @@ class ThreeTrackerRepository {
         return RetrofitInstance.USER_API_SERVICE.updateProfile(token, UpdateProfile)
     }
 
+    suspend fun getActivities(token: String): retrofit2.Response<List<ActivitiesResponse>> {
+        return RetrofitInstance.USER_API_SERVICE.getActivities(token)
+    }
 }
