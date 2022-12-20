@@ -84,5 +84,22 @@ class GetUsersViewModel(private val repository: ThreeTrackerRepository) : ViewMo
         return "No User found"
     }
 
+    fun getUserPositionInListById(id: Int): Int {
+        try {
+            users.value?.forEachIndexed{
+
+                    index, element ->
+                if (element.id == id) {
+                    return index
+                }
+            }
+
+        } catch (e: Exception) {
+            Log.d(TAG, "GetUsersViewModel - getUserPositionInListById() failed with exception: ${e.message}")
+            return -1
+        }
+        return -1
+    }
+
 
 }

@@ -33,6 +33,8 @@
     <string name="my_activities">My Activities</string>
     <string name="activity_type">Activity Type</string>
     <string name="posted_by">Posted By</string>
+    <string name="update_task">Update Task</string>
+    <string name="save">Save</string>
     <string-array name="priority_array">
         <item>Low</item>
         <item>Moderate</item>

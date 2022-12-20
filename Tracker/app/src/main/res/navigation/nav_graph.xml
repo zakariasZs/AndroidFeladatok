@@ -51,6 +51,9 @@
             app:exitAnim="@anim/to_right_anim"
             app:popEnterAnim="@anim/from_right_anim"
             app:popExitAnim="@anim/to_left_anim" />
+        <action
+            android:id="@+id/action_tasksFragment_to_updateTaskFragment"
+            app:destination="@id/updateTaskFragment" />
     </fragment>
     <fragment
         android:id="@+id/addTaskFragment"
@@ -59,13 +62,6 @@
         <action
             android:id="@+id/action_addTaskFragment_to_tasksFragment"
             app:destination="@id/tasksFragment" />
-        <action
-            android:id="@+id/action_addTaskFragment_self"
-            app:destination="@id/addTaskFragment"
-            app:enterAnim="@anim/from_left_anim"
-            app:exitAnim="@anim/to_right_anim"
-            app:popEnterAnim="@anim/from_right_anim"
-            app:popExitAnim="@anim/to_left_anim" />
     </fragment>
     <fragment
         android:id="@+id/taskDetailFragment"
@@ -91,5 +87,13 @@
         android:id="@+id/activityFragment"
         android:name="com.example.tracker.fragment.ActivityFragment"
         android:label="ActivityFragment" />
+    <fragment
+        android:id="@+id/updateTaskFragment"
+        android:name="com.example.tracker.fragment.UpdateTaskFragment"
+        android:label="UpdateTaskFragment" >
+        <action
+            android:id="@+id/action_updateTaskFragment_to_tasksFragment"
+            app:destination="@id/tasksFragment" />
+    </fragment>
 
 </navigation>

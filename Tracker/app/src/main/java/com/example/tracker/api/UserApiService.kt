@@ -34,4 +34,7 @@ interface UserApiService {
 
     @GET(BackendConstants.GET_ACTIVITIES)
     suspend fun getActivities(@Header(BackendConstants.HEADER_TOKEN) token: String): retrofit2.Response<List<ActivitiesResponse>>
+
+    @POST(BackendConstants.UPDATE_TASK)
+    suspend fun updateTask(@Header(BackendConstants.HEADER_TOKEN) token: String,@Body updateTask: UpdateTask): retrofit2.Response<UpdateTaskResponse>
 }

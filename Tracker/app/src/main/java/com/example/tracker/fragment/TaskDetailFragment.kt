@@ -34,7 +34,7 @@ class TaskDetailFragment : Fragment(R.layout.task_detail_screen) {
         super.onCreate(savedInstanceState)
 
         val factoryUsers = GetUsersViewModelFactory(ThreeTrackerRepository())
-        getUsersViewModel = ViewModelProvider(this, factoryUsers)[GetUsersViewModel::class.java]
+        getUsersViewModel = ViewModelProvider(requireActivity(), factoryUsers)[GetUsersViewModel::class.java]
 
     }
 
@@ -71,6 +71,10 @@ class TaskDetailFragment : Fragment(R.layout.task_detail_screen) {
         binding.backToTasks.setOnClickListener {
             tasksViewModel.taskToShow = TasksResponse(-1, "", "", -1, -1, -1, -1, -1, -1, -1, "null")
             this.findNavController().navigate(R.id.tasksFragment)
+        }
+
+        binding.editTask.setOnClickListener {
+            this.findNavController().navigate(R.id.updateTaskFragment)
         }
 
     }

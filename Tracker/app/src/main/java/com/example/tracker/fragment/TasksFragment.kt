@@ -15,6 +15,8 @@ import com.example.tracker.R
 import com.example.tracker.adapter.TasksAdapter
 import com.example.tracker.api.ThreeTrackerRepository
 import com.example.tracker.api.model.TasksResponse
+import com.example.tracker.viewmodel.GetDepartmentViewModel
+import com.example.tracker.viewmodel.GetDepartmentViewModelFactory
 import com.example.tracker.viewmodel.TasksViewModel
 import com.example.tracker.viewmodel.TasksViewModelFactory
 
@@ -25,6 +27,7 @@ class TasksFragment : Fragment(R.layout.task_list), TasksAdapter.OnItemClickList
     }
 
     private lateinit var tasksViewModel: TasksViewModel
+    private lateinit var getDepartmentViewModel: GetDepartmentViewModel
     private lateinit var recyclerView: RecyclerView
     private lateinit var taskadapter: TasksAdapter
 
@@ -32,6 +35,10 @@ class TasksFragment : Fragment(R.layout.task_list), TasksAdapter.OnItemClickList
         super.onCreate(savedInstanceState)
         val factory = TasksViewModelFactory(ThreeTrackerRepository())
         tasksViewModel = ViewModelProvider(requireActivity(), factory)[TasksViewModel::class.java]
+
+        val factoryDepartments = GetDepartmentViewModelFactory(ThreeTrackerRepository())
+        getDepartmentViewModel = ViewModelProvider(requireActivity(), factoryDepartments)[GetDepartmentViewModel::class.java]
+
     }
 
     override fun onCreateView(
@@ -73,6 +80,7 @@ class TasksFragment : Fragment(R.layout.task_list), TasksAdapter.OnItemClickList
         val addtaskButton = view.findViewById<ImageButton>(R.id.addTask)
 
         tasksViewModel.getTasks()
+        getDepartmentViewModel.getDepartments()
 
         addtaskButton.setOnClickListener{
             this.findNavController().navigate(R.id.addTaskFragment)

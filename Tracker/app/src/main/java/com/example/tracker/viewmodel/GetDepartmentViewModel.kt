@@ -64,4 +64,21 @@ class GetDepartmentViewModel(private val repository: ThreeTrackerRepository) : V
         return -1
     }
 
+    fun getDepartmentPositionFromList(id: Int): Int {
+        try {
+            departments.value?.forEachIndexed{
+
+                    index, element ->
+                if (element.id == id) {
+                    return index
+                }
+            }
+
+        } catch (e: Exception) {
+            Log.d(TAG, "GetDepartmentViewModel - getDepartmentIdFromList() failed with exception: ${e.message}")
+            return -1
+        }
+        return -1
+    }
+
 }
