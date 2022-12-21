@@ -173,7 +173,7 @@ class AddTaskFragment : Fragment(R.layout.add_task_screen), DatePickerDialog.OnD
 
 
 //            Log.e("XXX- Task Name ", title)
-//            Log.e("XXX- Assignee ", "$assigneeToUserId")
+//            Log.e("XXX- Assignee ", assigneeToUserId.toString())
 //            Log.e("XXX- Department ", departmentId.toString())
 //            Log.e("XXX- DeadLine: ", view.findViewById<TextView>(R.id.deadLinePicker).text.toString())
 //            Log.e("XXX- DeadLinePassed: ", deadLine.toString())
@@ -208,7 +208,8 @@ class AddTaskFragment : Fragment(R.layout.add_task_screen), DatePickerDialog.OnD
         calendar.set(year, month, dayOfMonth)
         Log.e("XXX- Calendar: ", calendar.timeInMillis.toString())
         val timestamp: Long = (calendar.timeInMillis)
-        view?.findViewById<Button>(R.id.deadLinePicker)?.text = formatter.format(timestamp).toString()
+        view?.findViewById<TextView>(R.id.deadLinePicker)?.text = formatter.format(timestamp).toString()
+        displayFormatedDate(timestamp)
     }
 
     private fun displayFormatedDate( timestamp: Long){

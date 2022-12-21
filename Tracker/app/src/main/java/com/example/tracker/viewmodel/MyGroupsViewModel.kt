@@ -17,6 +17,7 @@ class MyGroupsViewModel(private val repository: ThreeTrackerRepository) : ViewMo
     }
 
     var groups: MutableLiveData<List<MyGroupsResponse>?> = MutableLiveData()
+    var groupToShow : MyGroupsResponse = MyGroupsResponse( -1, "")
 
     init {
         getMyGroups()

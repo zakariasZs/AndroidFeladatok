@@ -74,7 +74,11 @@
     <fragment
         android:id="@+id/myGroupsFragment"
         android:name="com.example.tracker.fragment.MyGroupsFragment"
-        android:label="MyGroupsFragment" />
+        android:label="MyGroupsFragment" >
+        <action
+            android:id="@+id/action_myGroupsFragment_to_myGroupMembersFragment"
+            app:destination="@id/myGroupMembersFragment" />
+    </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
         android:name="com.example.tracker.fragment.EditProfileFragment"
@@ -94,6 +98,14 @@
         <action
             android:id="@+id/action_updateTaskFragment_to_tasksFragment"
             app:destination="@id/tasksFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myGroupMembersFragment"
+        android:name="com.example.tracker.fragment.MyGroupMembersFragment"
+        android:label="MyGroupMembersFragment" >
+        <action
+            android:id="@+id/action_myGroupMembersFragment_to_myGroupsFragment"
+            app:destination="@id/myGroupsFragment" />
     </fragment>
 
 </navigation>

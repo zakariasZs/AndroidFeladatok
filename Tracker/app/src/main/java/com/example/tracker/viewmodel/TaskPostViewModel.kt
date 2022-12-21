@@ -1,10 +1,12 @@
 package com.example.tracker.viewmodel
 
 import android.util.Log
+import android.widget.TextView
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.tracker.App
+import com.example.tracker.R
 import com.example.tracker.api.ThreeTrackerRepository
 import com.example.tracker.api.model.TaskPostBody
 import com.example.tracker.manager.SharedPreferencesManager
@@ -22,6 +24,12 @@ class TaskPostViewModel(private val repository: ThreeTrackerRepository) : ViewMo
 
     fun taskPost(title: String, description: String, assigneeToUserId: Int, priority: Int, deadline: Long, departmentId: Int, status: Int) {
         val requestBody = TaskPostBody(title, description, assigneeToUserId, priority, deadline, departmentId, status)
+        Log.e("XXX- Task Name ", title)
+        Log.e("XXX- Assignee ", assigneeToUserId.toString())
+        Log.e("XXX- Department ", departmentId.toString())
+        Log.e("XXX- Priority ", priority.toString())
+        Log.e("XXX- Status ", status.toString())
+        Log.e("XXX- Details ", description)
         viewModelScope.launch {
             executeTaskCreation(requestBody)
         }
@@ -36,9 +44,7 @@ class TaskPostViewModel(private val repository: ThreeTrackerRepository) : ViewMo
                     "Empty token!"
                 )
 
-//            val response = token?.let {
-//                repository.postTask(it, requestBody)
-//            }
+
 
                 val response = withContext(Dispatchers.IO) {
                     token?.let { repository.postTask(it, requestBody) }

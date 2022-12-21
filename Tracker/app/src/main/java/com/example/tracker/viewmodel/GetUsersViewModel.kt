@@ -48,8 +48,6 @@ class GetUsersViewModel(private val repository: ThreeTrackerRepository) : ViewMo
         }
     }
 
-
-
     fun getUserIdFromList(position: Int): Int {
         try {
             users.value?.forEachIndexed{
@@ -100,6 +98,7 @@ class GetUsersViewModel(private val repository: ThreeTrackerRepository) : ViewMo
         }
         return -1
     }
+
 
 
 }

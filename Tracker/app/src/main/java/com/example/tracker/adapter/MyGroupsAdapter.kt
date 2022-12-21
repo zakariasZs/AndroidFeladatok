@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tracker.R
@@ -13,23 +14,26 @@ import com.example.tracker.api.model.MyGroupsResponse
 
 class MyGroupsAdapter (
     private var list: ArrayList<MyGroupsResponse>,
-    private val context: Context
+    private val context: Context,
+    private var listener: OnItemClickListener
 ) :
     RecyclerView.Adapter<MyGroupsAdapter.DataViewHolder>() {
-
-    var currentItemId: Int = -1
 
     // 1. user defined ViewHolder type - Embedded class!
     inner class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener {
         val myGroupView_name: TextView = itemView.findViewById(R.id.group_name)
+        val button: Button = itemView.findViewById(R.id.buttonDetails)
 
         init {
-            itemView.setOnClickListener(this)
+            button.setOnClickListener{
+                listener.onItemClick(adapterPosition)
+            }
         }
 
         override fun onClick(p0: View?) {
             val currentPosition = this.adapterPosition
+            listener.onItemClick(currentPosition)
         }
 
     }

@@ -15,26 +15,19 @@
 
 
         <TextView
-            android:id="@+id/group_name"
+            android:id="@+id/memberName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/group_name"
+            android:text="@string/member_name"
+            android:layout_centerHorizontal="true"
             android:textColor="@android:color/black"
             android:textSize="16sp"
-            android:paddingTop="1sp"
-            android:paddingLeft="10sp"
-            android:textStyle="bold"
-            android:layout_centerVertical="true"
-            android:layout_alignParentStart="true"/>
+            android:padding="5sp"
+            android:textStyle="bold"/>
 
 
-        <Button
-            android:id="@+id/buttonDetails"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/details"
-            android:layout_alignParentEnd="true"
-            android:backgroundTint="#fa6712"/>
+
+
 
 
     </RelativeLayout>
